@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow"
+    tools:context=".login.LoginFragment">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/text_app_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <TextView
+        android:id="@+id/tvUser"
+        style="@style/login_bold"
+        android:layout_marginTop="16dp"
+        android:text="@string/user"
+        app:layout_constraintStart_toStartOf="@+id/etUser"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        style="@style/login_edit_texts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/tvPassword"
+        style="@style/login_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/password"
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etUser" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/login_button"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:text="@string/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgottenPassword" />
+
+    <TextView
+        android:id="@+id/tvForgottenPassword"
+        style="@style/login_12sp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:text="@string/olvidaste_contrasena"
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <EditText
+        android:id="@+id/etUser"
+        style="@style/login_edit_texts"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUser"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvLoginOptions"
+        style="@style/small_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:text="@string/you_can_login_with"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAppleLogin"
+        style="@style/fab"
+        android:src="@drawable/apple_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/fabFacebookLogin"
+        app:layout_constraintEnd_toStartOf="@+id/fabFacebookLogin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fabFacebookLogin"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabFacebookLogin"
+        style="@style/fab"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:src="@drawable/facebook_icon"
+        app:layout_constraintEnd_toStartOf="@+id/fabGoogleLogin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fabAppleLogin"
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginOptions"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabGoogleLogin"
+        style="@style/fab"
+        android:src="@drawable/google_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/fabFacebookLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fabFacebookLogin"
+        app:layout_constraintTop_toTopOf="@+id/fabFacebookLogin"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvDontHaveAccount"
+        style="@style/small_text"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_8dp"
+        android:text="@string/dont_have_an_account"
+        app:layout_constraintEnd_toStartOf="@+id/tvRevister"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fabFacebookLogin" />
+
+    <TextView
+        android:id="@+id/tvContinueAsAGuest"
+        style="@style/login_bold"
+        android:layout_marginTop="16dp"
+        android:text="@string/continue_as_a_guest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDontHaveAccount" />
+
+    <TextView
+        android:id="@+id/tvRevister"
+        android:text="@string/register"
+        style="@style/login_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDontHaveAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvDontHaveAccount"
+        app:layout_constraintTop_toTopOf="@+id/tvDontHaveAccount"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
