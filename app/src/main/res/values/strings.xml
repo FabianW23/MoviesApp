@@ -17,4 +17,7 @@
     <string name="accept">Accept</string>
     <string name="search">Search</string>
     <string name="play">Play</string>
+    <string name="search_imdb">Search IMDb</string>
+    <string name="_2022">2022</string>
+    <string name="actor">actor</string>
 </resources>

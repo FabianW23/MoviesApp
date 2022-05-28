@@ -1,10 +1,10 @@
-package com.example.moviesapp
+package com.example.moviesapp.authentication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.moviesapp.databinding.ActivityLoginBinding
 
-class LoginActivity : AppCompatActivity() {
+class AuthenticationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -17,6 +17,5 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
     }
 }
