@@ -1,4 +1,4 @@
-package com.example.moviesapp.splash
+package com.example.moviesapp.authentication.splash
 
 import android.os.Bundle
 import android.os.Handler

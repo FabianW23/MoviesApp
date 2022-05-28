@@ -5,20 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    tools:context=".login.LoginFragment">
+    tools:context=".authentication.login.LoginFragment">
 
     <TextView
         android:id="@+id/tvTitle"
         style="@style/text_app_logo"
+        android:fontFamily="@font/anton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.13" />
 
     <TextView
         android:id="@+id/tvUser"
-        style="@style/login_bold"
+        style="@style/text_bold"
         android:layout_marginTop="16dp"
         android:text="@string/user"
         app:layout_constraintStart_toStartOf="@+id/etUser"
@@ -27,18 +28,18 @@
     <EditText
         android:id="@+id/etPassword"
         style="@style/login_edit_texts"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:importantForAutofill="no" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/tvPassword"
-        style="@style/login_bold"
+        style="@style/text_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/password"
         app:layout_constraintStart_toStartOf="@+id/etPassword"
         app:layout_constraintTop_toBottomOf="@+id/etUser" />
@@ -63,7 +64,6 @@
     <EditText
         android:id="@+id/etUser"
         style="@style/login_edit_texts"
-        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUser"
@@ -72,45 +72,86 @@
     <TextView
         android:id="@+id/tvLoginOptions"
         style="@style/small_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16dp"
         android:text="@string/you_can_login_with"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
         android:id="@+id/fabAppleLogin"
         style="@style/fab"
-        android:src="@drawable/apple_icon"
         app:layout_constraintBottom_toBottomOf="@+id/fabFacebookLogin"
         app:layout_constraintEnd_toStartOf="@+id/fabFacebookLogin"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fabFacebookLogin"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
+        android:id="@+id/imAppleIcon"
+        android:layout_width="@dimen/dimen_35dp"
+        android:layout_height="@dimen/dimen_35dp"
+        android:src="@drawable/ic_apple"
+        android:tintMode="add"
+        app:layout_constraintBottom_toBottomOf="@+id/fabAppleLogin"
+        app:layout_constraintEnd_toEndOf="@+id/fabAppleLogin"
+        app:layout_constraintStart_toStartOf="@+id/fabAppleLogin"
+        app:layout_constraintTop_toTopOf="@+id/fabAppleLogin" />
+
+    <ImageView
         android:id="@+id/fabFacebookLogin"
         style="@style/fab"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="@dimen/dimen_16dp"
-        android:src="@drawable/facebook_icon"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toStartOf="@+id/fabGoogleLogin"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fabAppleLogin"
-        app:layout_constraintTop_toBottomOf="@+id/tvLoginOptions"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginOptions" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
+        android:id="@+id/imFacebookIcon"
+        android:layout_width="@dimen/dimen_35dp"
+        android:layout_height="@dimen/dimen_35dp"
+        android:src="@drawable/ic_facebook"
+        android:tintMode="add"
+        app:layout_constraintBottom_toBottomOf="@+id/fabFacebookLogin"
+        app:layout_constraintEnd_toEndOf="@+id/fabFacebookLogin"
+        app:layout_constraintStart_toStartOf="@+id/fabFacebookLogin"
+        app:layout_constraintTop_toTopOf="@+id/fabFacebookLogin" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_google"
+        app:layout_constraintBottom_toBottomOf="@+id/fabGoogleLogin"
+        app:layout_constraintEnd_toEndOf="@+id/fabGoogleLogin"
+        app:layout_constraintStart_toStartOf="@+id/fabGoogleLogin"
+        app:layout_constraintTop_toTopOf="@+id/fabGoogleLogin" />
+
+
+    <ImageView
         android:id="@+id/fabGoogleLogin"
         style="@style/fab"
-        android:src="@drawable/google_icon"
         app:layout_constraintBottom_toBottomOf="@+id/fabFacebookLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fabFacebookLogin"
         app:layout_constraintTop_toTopOf="@+id/fabFacebookLogin"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imGoogleIcon"
+        android:layout_width="@dimen/dimen_35dp"
+        android:layout_height="@dimen/dimen_35dp"
+        android:src="@drawable/ic_google"
+        android:tintMode="add"
+        app:layout_constraintBottom_toBottomOf="@+id/fabGoogleLogin"
+        app:layout_constraintEnd_toEndOf="@+id/fabGoogleLogin"
+        app:layout_constraintStart_toStartOf="@+id/fabGoogleLogin"
+        app:layout_constraintTop_toTopOf="@+id/fabGoogleLogin" />
 
     <TextView
         android:id="@+id/tvDontHaveAccount"
@@ -126,7 +167,7 @@
 
     <TextView
         android:id="@+id/tvContinueAsAGuest"
-        style="@style/login_bold"
+        style="@style/text_bold"
         android:layout_marginTop="16dp"
         android:text="@string/continue_as_a_guest"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,8 +176,8 @@
 
     <TextView
         android:id="@+id/tvRevister"
+        style="@style/text_bold"
         android:text="@string/register"
-        style="@style/login_bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvDontHaveAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

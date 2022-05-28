@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/menu_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/searchFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.moviesapp.menu.HomeFragment"
+        android:name="com.example.moviesapp.menu.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.moviesapp.search.SearchFragment"
+        android:name="com.example.moviesapp.menu.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/playFragment"
-        android:name="com.example.moviesapp.menu.PlayFragment"
+        android:name="com.example.moviesapp.menu.play.PlayFragment"
         android:label="fragment_play"
         tools:layout="@layout/fragment_play" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.moviesapp.menu.SettingsFragment"
+        android:name="com.example.moviesapp.menu.account.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>
