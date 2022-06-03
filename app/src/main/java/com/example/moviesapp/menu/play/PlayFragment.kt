@@ -10,6 +10,7 @@ import com.example.moviesapp.R
 class PlayFragment : Fragment() {
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

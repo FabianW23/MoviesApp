@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/menu_graph"
-    app:startDestination="@id/searchFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -14,7 +14,11 @@
         android:id="@+id/searchFragment"
         android:name="com.example.moviesapp.menu.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
     <fragment
         android:id="@+id/playFragment"
         android:name="com.example.moviesapp.menu.play.PlayFragment"
@@ -22,7 +26,32 @@
         tools:layout="@layout/fragment_play" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.moviesapp.menu.account.SettingsFragment"
+        android:name="com.example.moviesapp.menu.account.AccountFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.example.moviesapp.menu.search.movie.MovieFragment"
+        android:label="fragment_movie"
+        tools:layout="@layout/fragment_movie" >
+        <argument
+            android:name="movieName"
+            app:argType="string" />
+        <argument
+            android:name="posterURL"
+            app:argType="string" />
+        <argument
+            android:name="synopsis"
+            app:argType="string" />
+        <argument
+            android:name="movieGenre"
+            app:argType="string"/>
+        <argument
+            android:name="releaseDate"
+            app:argType="string" />
+        <argument
+            android:name="score"
+            app:argType="string"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
