@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.account.AccountFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clProfile"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_280dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvAvatar"
+                    android:layout_width="@dimen/dimen_50dp"
+                    android:layout_height="@dimen/dimen_50dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    app:cardCornerRadius="@dimen/dimen_30dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/poster_placeholder"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    style="@style/small_title_text"
+                    android:layout_marginStart="@dimen/dimen_32dp"
+                    android:text="@string/fabian_morales_david"
+                    app:layout_constraintBottom_toBottomOf="@+id/cvAvatar"
+                    app:layout_constraintStart_toEndOf="@+id/cvAvatar"
+                    app:layout_constraintTop_toTopOf="@+id/cvAvatar" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_30dp"
+                    android:layout_height="@dimen/dimen_30dp"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:src="@drawable/ic_settings"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvUserName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvUserName" />
+
+                <View
+                    android:id="@+id/vFirstDivider"
+                    style="@style/divider"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvAvatar" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProfileData"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_170dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vFirstDivider" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/vSecondDivider"
+                style="@style/big_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clProfile" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clFollowingList"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_200dp"
+                app:layout_constraintTop_toBottomOf="@+id/vSecondDivider">
+
+                <View
+                    android:id="@+id/vFirstBulletPoint"
+                    style="@style/bullet_point"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:text="@string/following_list"
+                    app:layout_constraintBottom_toBottomOf="@+id/vFirstBulletPoint"
+                    app:layout_constraintStart_toEndOf="@+id/vFirstBulletPoint"
+                    app:layout_constraintTop_toTopOf="@+id/vFirstBulletPoint" />
+
+                <TextView
+                    android:id="@+id/tvCreateFollowingListText"
+                    style="@style/big_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:text="@string/create_a_watchlist_dont_miss_any_movie"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vFirstBulletPoint" />
+
+                <Button
+                    style="@style/yellow_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_48dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:text="@string/start_your_following_list"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCreateFollowingListText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/vThirdDivider"
+                style="@style/big_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clFollowingList" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clRecentViews"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vThirdDivider">
+
+                <View
+                    android:id="@+id/vSecondBulletPoint"
+                    style="@style/bullet_point"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/title_text"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:text="@string/recent_views"
+                    app:layout_constraintBottom_toBottomOf="@+id/vSecondBulletPoint"
+                    app:layout_constraintStart_toEndOf="@+id/vSecondBulletPoint"
+                    app:layout_constraintTop_toTopOf="@+id/vSecondBulletPoint" />
+
+                <TextView
+                    style="@style/big_text"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:text="@string/no_views"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vSecondBulletPoint" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/vFourDivider"
+                style="@style/big_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clRecentViews" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vFourDivider">
+
+                <View
+                    android:id="@+id/vThirdBulletPoint"
+                    style="@style/bullet_point"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/title_text"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:text="@string/favorite_people"
+                    app:layout_constraintBottom_toBottomOf="@+id/vThirdBulletPoint"
+                    app:layout_constraintStart_toEndOf="@+id/vThirdBulletPoint"
+                    app:layout_constraintTop_toTopOf="@+id/vThirdBulletPoint" />
+
+                <TextView
+                    style="@style/big_text"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:text="@string/no_views"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vThirdBulletPoint" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

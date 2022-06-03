@@ -20,4 +20,15 @@
     <string name="search_imdb">Search IMDb</string>
     <string name="_2022">2022</string>
     <string name="actor">actor</string>
+    <string name="top_picks">Top picks</string>
+    <string name="fabian_morales_david">Fabian Morales David</string>
+    <string name="add_to_my_following_list">Add to my following list</string>
+    <string name="episodes">episodes</string>
+    <string name="official_trailer">Official Trailer</string>
+    <string name="no_views">No views</string>
+    <string name="favorite_people">Favorite people</string>
+    <string name="recent_views">Recent views</string>
+    <string name="following_list">Following List</string>
+    <string name="start_your_following_list">Start your following list</string>
+    <string name="create_a_watchlist_dont_miss_any_movie">create a watchlist so you don\'t miss any movies</string>
 </resources>

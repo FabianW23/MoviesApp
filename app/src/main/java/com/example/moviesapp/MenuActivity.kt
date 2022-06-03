@@ -24,7 +24,4 @@ class MenuActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navController)
     }
 
-
-
-
 }

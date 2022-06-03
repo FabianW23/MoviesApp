@@ -6,14 +6,135 @@
     android:layout_height="match_parent"
     tools:context=".menu.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home Fragment"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen_60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cnTrending"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_310dp"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imMovieTrailer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_210dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/stranger_things"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_play_circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/imMovieTrailer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imMovieTrailer" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/dimen_120dp"
+                    android:layout_height="@dimen/dimen_180dp"
+                    android:layout_marginStart="@dimen/dimen_24dp"
+                    android:src="@drawable/poster_placeholder"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.80" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/small_title_text"
+                    android:layout_marginBottom="@dimen/dimen_8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.20"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/imMovieTrailer"
+                    app:layout_constraintVertical_bias="0.3"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:text="Stranger Things" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView2"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2"
+                    android:text="@string/official_trailer" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/vFirstDivider"
+                style="@style/big_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cnTrending" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cnTopMovies"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_350dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vFirstDivider">
+
+                <View
+                    android:id="@+id/vBulletPointTop"
+                    style="@style/bullet_point"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvTopTitle"
+                    style="@style/title_text"
+                    android:text="@string/top_picks"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/vBulletPointTop"
+                    app:layout_constraintStart_toEndOf="@+id/vBulletPointTop"
+                    app:layout_constraintTop_toTopOf="@+id/vBulletPointTop"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_270dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTopTitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/big_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cnTopMovies" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

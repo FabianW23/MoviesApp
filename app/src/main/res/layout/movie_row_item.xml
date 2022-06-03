@@ -7,23 +7,27 @@
 
     <ImageView
         android:id="@+id/imPoster"
-        android:layout_width="85dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="@dimen/dimen_16dp"
-        android:scaleType="fitXY"
-        tools:src="@drawable/facebook_icon"
+        android:layout_width="@dimen/dimen_80dp"
+        android:layout_height="@dimen/dimen_120dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/poster_placeholder" />
 
     <TextView
         android:id="@+id/tvMovie"
         style="@style/text_bold"
-        tools:text="@string/name"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:maxLines="2"
+        android:ellipsize="end"
         app:layout_constraintBottom_toTopOf="@+id/tvDate"
-        app:layout_constraintStart_toStartOf="@+id/tvDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imPoster"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Doctor strange in the multiverse" />
 
     <TextView
         android:id="@+id/tvDate"
@@ -46,8 +50,6 @@
 
     <View
         style="@style/divider"
-        android:layout_marginStart="@dimen/dimen_16dp"
-        android:layout_marginEnd="@dimen/dimen_16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
