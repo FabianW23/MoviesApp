@@ -61,6 +61,7 @@
                 tools:text="Calificaciones" />
 
             <TextView
+                android:id="@+id/tvCount"
                 style="@style/small_text"
                 android:layout_marginStart="@dimen/dimen_8dp"
                 android:layout_marginTop="@dimen/dimen_8dp"

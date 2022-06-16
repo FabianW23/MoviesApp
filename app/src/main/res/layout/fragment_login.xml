@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    tools:context=".authentication.login.LoginFragment">
+    tools:context=".presentation.authentication.login.LoginFragment">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -49,6 +49,7 @@
         style="@style/login_button"
         android:layout_marginTop="24dp"
         android:text="@string/login"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvForgottenPassword" />
