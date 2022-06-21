@@ -28,13 +28,14 @@ class MovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.topAppBar.title = args.movie.name
-        binding.tvMovieTitle.text = args.movie.name
-        binding.tvGenre.text = args.movie.genre
-        binding.tvReleaseDate.text = args.movie.date
-        binding.tvSynopsis.text = args.movie.synopsis
-        binding.tvMovieOriginalTitle.text = args.movie.name+ resources.getString(R.string.original_title)
-        binding.tvScore.text = args.movie.score.toString()
-        Picasso.get().load(args.movie.poster).into(binding.imMoviePoster)
+        binding.topAppBar.title = args.movie.title
+        binding.tvMovieTitle.text = args.movie.title
+        binding.tvGenre.text = "NA" //args.movie.genre
+        binding.tvReleaseDate.text = args.movie.releaseDate
+        binding.tvSynopsis.text = args.movie.overview
+        binding.tvMovieOriginalTitle.text = args.movie.originalTitle+ resources.getString(R.string.original_title)
+        binding.tvScore.text = args.movie.voteAverage.toString()
+        Picasso.get().load(args.movie.posterUrlPath).into(binding.imMoviePoster)
+        Picasso.get().load(args.movie.BackDropPath).into(binding.imMovieTrailer)
     }
 }

@@ -18,14 +18,10 @@ class MovieTopAdapter(private val movie:List<MovieModel>):RecyclerView.Adapter<M
 
     inner class MovieHolder(val view:View):RecyclerView.ViewHolder(view){
 
-        //private val tvMovie:TextView = view.findViewById(R.id.tvNameTop)
-        //private val tvScore:TextView = view.findViewById(R.id.tvScore)
-        //private val imPoster:ImageView = view.findViewById(R.id.imPosterTop)
-
         fun render(movie: MovieModel){
-            binding.tvNameTop.text = movie.name
-            binding.tvScore.text = movie.date
-            Picasso.get().load(movie.poster).into(binding.imPosterTop)
+            binding.tvNameTop.text = movie.title
+            binding.tvScore.text = movie.voteAverage.toString()
+            Picasso.get().load(movie.posterUrlPath).into(binding.imPosterTop)
         }
     }
 
@@ -37,6 +33,10 @@ class MovieTopAdapter(private val movie:List<MovieModel>):RecyclerView.Adapter<M
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.render(movie[position])
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
     override fun getItemCount(): Int {

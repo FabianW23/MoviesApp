@@ -5,5 +5,5 @@ import com.example.moviesapp.domain.model.MovieModel
 
 interface GetMoviesUseCase {
 
-    operator fun invoke():List<MovieModel>
+    suspend operator fun invoke():List<MovieModel>
 }
