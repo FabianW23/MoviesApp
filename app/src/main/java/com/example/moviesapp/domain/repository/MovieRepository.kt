@@ -5,5 +5,7 @@ import com.example.moviesapp.data.mapper.toListOfMovieModel
 import com.example.moviesapp.domain.model.MovieModel
 
 interface MovieRepository {
-    fun getMovies():List<MovieModel>
+    suspend fun getMovies():List<MovieModel>
+
+    suspend fun getTopRatedMovies():List<MovieModel>
 }

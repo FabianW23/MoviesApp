@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.databinding.FragmentHomeBinding
 import com.example.moviesapp.domain.model.MovieModel
 import com.example.moviesapp.presentation.menu.home.adapter.MovieTopAdapter
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -31,6 +33,13 @@ class HomeFragment : Fragment() {
         binding.rvTop.adapter = adapter
     }
 
+    private fun initTrending(){
+        val movie = movies[Random.nextInt(movies.size)]
+        binding.tvTrendingMovieTitle.text = movie.title
+        Picasso.get().load(movie.BackDropPath).into(binding.imTrendingMovieTrailer)
+        Picasso.get().load(movie.posterUrlPath).into(binding.imTrendingMoviePoster)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +57,7 @@ class HomeFragment : Fragment() {
     private fun setMovieList(movies: List<MovieModel>?) {
         if (movies != null) {
             this.movies = movies
+            initTrending()
             initRecycler() // Ahora aqui
         }
     }

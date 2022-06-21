@@ -8,6 +8,7 @@ buildscript {
     ext {
         navigation = '2.3.5'
         hiltDagger = "2.38.1"
+        retrofit = '2.6.0'
     }
 
     dependencies {

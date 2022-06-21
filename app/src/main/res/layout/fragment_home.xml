@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imMovieTrailer"
+                    android:id="@+id/imTrendingMovieTrailer"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_210dp"
                     android:scaleType="centerCrop"
@@ -43,13 +43,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_play_circle"
-                    app:layout_constraintBottom_toBottomOf="@+id/imMovieTrailer"
+                    app:layout_constraintBottom_toBottomOf="@+id/imTrendingMovieTrailer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imMovieTrailer" />
+                    app:layout_constraintTop_toTopOf="@+id/imTrendingMovieTrailer" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imTrendingMoviePoster"
                     android:layout_width="@dimen/dimen_120dp"
                     android:layout_height="@dimen/dimen_180dp"
                     android:layout_marginStart="@dimen/dimen_24dp"
@@ -60,17 +60,17 @@
                     app:layout_constraintVertical_bias="0.80" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tvTrendingMovieTitle"
                     style="@style/small_title_text"
                     android:layout_marginBottom="@dimen/dimen_8dp"
                     app:layout_constraintBottom_toTopOf="@+id/textView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.20"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toBottomOf="@+id/imMovieTrailer"
+                    app:layout_constraintStart_toEndOf="@+id/imTrendingMoviePoster"
+                    app:layout_constraintTop_toBottomOf="@+id/imTrendingMovieTrailer"
                     app:layout_constraintVertical_bias="0.3"
                     app:layout_constraintVertical_chainStyle="packed"
-                    android:text="Stranger Things" />
+                    tools:text="Stranger Things" />
 
                 <TextView
                     android:id="@+id/textView"
@@ -78,8 +78,8 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2"
+                    app:layout_constraintStart_toStartOf="@+id/tvTrendingMovieTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTrendingMovieTitle"
                     android:text="@string/official_trailer" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

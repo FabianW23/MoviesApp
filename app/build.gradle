@@ -61,4 +61,8 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hiltDagger"
     kapt "com.google.dagger:hilt-compiler:$hiltDagger"
 
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
 }
