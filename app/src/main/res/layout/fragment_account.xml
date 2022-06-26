@@ -33,11 +33,12 @@
                     android:layout_height="@dimen/dimen_50dp"
                     android:layout_marginStart="@dimen/dimen_16dp"
                     android:layout_marginTop="@dimen/dimen_16dp"
-                    app:cardCornerRadius="@dimen/dimen_30dp"
+                    app:cardCornerRadius="25dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
+                        android:id="@+id/imAvatar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
@@ -58,6 +59,7 @@
                     app:layout_constraintTop_toTopOf="@+id/cvAvatar" />
 
                 <ImageView
+                    android:id="@+id/btnConfigurations"
                     android:layout_width="@dimen/dimen_30dp"
                     android:layout_height="@dimen/dimen_30dp"
                     android:layout_marginEnd="@dimen/dimen_16dp"
