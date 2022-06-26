@@ -14,8 +14,4 @@ class AuthenticationActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
-
-    override fun onResume() {
-        super.onResume()
-    }
 }

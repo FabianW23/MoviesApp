@@ -2,7 +2,6 @@ package com.example.moviesapp.data.datasource.remote
 
 import com.example.moviesapp.data.datasource.remote.network.api.MovieApi
 import com.example.moviesapp.data.model.dto.MovieDTO
-
 import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(private val api: MovieApi): RemoteDataSource {
