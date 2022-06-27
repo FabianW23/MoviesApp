@@ -9,10 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.moviesapp.App
 import com.example.moviesapp.R
+import com.example.moviesapp.data.utils.toSha256
 import com.example.moviesapp.presentation.menu.MenuActivity
 import com.example.moviesapp.databinding.FragmentLoginBinding
+import com.example.moviesapp.presentation.authentication.register.RegisterViewModelFactory
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -26,7 +30,23 @@ import com.google.firebase.auth.GoogleAuthProvider
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: LoginViewModel by viewModels{
+        LoginViewModelFactory((this.activity?.application as App).repository)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.isUserEnableToLogin.observe(this, Observer(::localLogIn))
+    }
+
+    private fun localLogIn(userCanLogIn: Boolean?) {
+        if (userCanLogIn != null && userCanLogIn == true)
+        {
+            navigateToMenuActivity()
+        }else{
+            Toast.makeText(this.activity,"Login Failed",Toast.LENGTH_LONG).show()
+        }
+    }
 
     private fun googleLogIn() {
         var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -80,7 +100,9 @@ class LoginFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding.btnLogin.setOnClickListener {
-            navigateToMenuActivity()
+            viewModel.validateUser(
+                binding.etUser.text.toString(),
+                binding.etPassword.text.toString().toSha256())
         }
 
         binding.fabGoogleLogin.setOnClickListener { googleLogIn() }
