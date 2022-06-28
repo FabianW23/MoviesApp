@@ -71,8 +71,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
 
     // Room components
-    /*implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-    androidTestImplementation "androidx.room:room-testing:$roomVersion"*/
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
 }
