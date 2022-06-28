@@ -1,14 +1,11 @@
 package com.example.moviesapp.presentation.authentication.database
 
 import androidx.annotation.WorkerThread
-import com.example.moviesapp.presentation.authentication.database.dao.UserDao
-import com.example.moviesapp.data.mapper.toUserEntity
 import com.example.moviesapp.data.mapper.toUserModelWithOutPassword
 import com.example.moviesapp.domain.model.UserModel
-import com.example.moviesapp.domain.repository.DataBaseRepository
+import com.example.moviesapp.presentation.authentication.database.dao.UserDao
 import com.example.moviesapp.presentation.authentication.database.entities.UserEntity
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
 class DataBaseRepositoryImpl constructor(private val userDao: UserDao) /*: DataBaseRepository*/ {
 

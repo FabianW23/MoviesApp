@@ -10,6 +10,9 @@ buildscript {
         hiltDagger = "2.38.1"
         retrofit = '2.6.0'
         roomVersion = '2.2.5'
+        coroutinesTest = '1.5.0'
+        coreTesting = '2.1.0'
+        mockk = '1.11.0'
     }
 
     dependencies {
