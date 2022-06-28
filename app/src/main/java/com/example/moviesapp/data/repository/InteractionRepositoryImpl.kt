@@ -7,6 +7,7 @@ import com.example.moviesapp.domain.repository.InteractionRepository
 import javax.inject.Inject
 
 class InteractionRepositoryImpl @Inject constructor(private val cacheDataSource: CacheDataSource) : InteractionRepository{
+
     override fun getInteractions():List<InteractionModel>{
         return cacheDataSource.getInteractions().toListOfInteractionModel()
     }
