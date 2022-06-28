@@ -16,8 +16,8 @@ interface UserDao {
     @Query("INSERT INTO user_table (name,email,password) VALUES(:name,:email,:password)")
     suspend fun insert(name:String, email:String, password:String)
 
-    @Query("SELECT EXISTS(SELECT * FROM user_table WHERE email = :email and password = :password)")
-    suspend fun ifUserExist(email : String, password: String) : Boolean
+    @Query("SELECT id,name,email,password FROM user_table WHERE email = :email and password = :password")
+    suspend fun ifUserExist(email : String, password: String) : UserEntity
 
     @Query("DELETE FROM user_table")
     suspend fun deleteAll()

@@ -1,34 +1,32 @@
 package com.example.moviesapp.presentation.authentication.login
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.moviesapp.App
 import com.example.moviesapp.R
 import com.example.moviesapp.data.utils.toSha256
-import com.example.moviesapp.presentation.menu.MenuActivity
 import com.example.moviesapp.databinding.FragmentLoginBinding
-import com.example.moviesapp.presentation.authentication.register.RegisterViewModelFactory
+import com.example.moviesapp.domain.model.UserModel
+import com.example.moviesapp.presentation.menu.MenuActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
-
 class LoginFragment : Fragment() {
 
+    private lateinit var sharedPref : SharedPreferences
     private lateinit var binding: FragmentLoginBinding
     private val viewModel: LoginViewModel by viewModels{
         LoginViewModelFactory((this.activity?.application as App).repository)
@@ -36,15 +34,37 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPref = activity?.getSharedPreferences(LOGGED_USER_PREFERENCES,Context.MODE_PRIVATE)!!
+        checkIfUserIsLoggedIn()
         viewModel.isUserEnableToLogin.observe(this, Observer(::localLogIn))
     }
 
-    private fun localLogIn(userCanLogIn: Boolean?) {
-        if (userCanLogIn != null && userCanLogIn == true)
-        {
+    private fun checkIfUserIsLoggedIn() {
+        val name = sharedPref?.getString(NAME,null)
+        if (name != null){
             navigateToMenuActivity()
+        }
+    }
+
+    private fun localLogIn(user: UserModel?) {
+        if (user != null)
+        {
+            saveUserLoggedIn(user)
+            navigateToMenuActivity()
+
         }else{
             Toast.makeText(this.activity,"Login Failed",Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun saveUserLoggedIn(user: UserModel?) {
+        if (user != null) {
+            val editPrefs = sharedPref?.edit()
+            editPrefs?.putInt(ID,user.id)
+            editPrefs?.putString(NAME,user.name)
+            editPrefs?.putString(EMAIL,user.email)
+            editPrefs?.apply()
+            editPrefs?.commit()
         }
     }
 
@@ -70,6 +90,11 @@ class LoginFragment : Fragment() {
                     FirebaseAuth.getInstance().signInWithCredential(credential)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
+                                saveUserLoggedIn(UserModel(
+                                    0,
+                                    account.displayName.toString(),
+                                    account.email.toString(),
+                                    ""))
                                 navigateToMenuActivity()
                             } else {
                                 Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT)
@@ -99,6 +124,7 @@ class LoginFragment : Fragment() {
             val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             findNavController().navigate(action)
         }
+
         binding.btnLogin.setOnClickListener {
             viewModel.validateUser(
                 binding.etUser.text.toString(),
@@ -111,5 +137,12 @@ class LoginFragment : Fragment() {
     private fun navigateToMenuActivity() {
         var intent = Intent(context, MenuActivity::class.java)
         startActivity(intent)
+    }
+
+    companion object{
+        const val LOGGED_USER_PREFERENCES = "com.example.moviesapp.LOGED_USER_PREFERENCES"
+        const val EMAIL = "email"
+        const val NAME = "name"
+        const val ID = "id"
     }
 }

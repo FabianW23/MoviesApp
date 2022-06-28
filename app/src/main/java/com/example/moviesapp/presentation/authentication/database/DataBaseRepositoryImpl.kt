@@ -3,6 +3,7 @@ package com.example.moviesapp.presentation.authentication.database
 import androidx.annotation.WorkerThread
 import com.example.moviesapp.presentation.authentication.database.dao.UserDao
 import com.example.moviesapp.data.mapper.toUserEntity
+import com.example.moviesapp.data.mapper.toUserModelWithOutPassword
 import com.example.moviesapp.domain.model.UserModel
 import com.example.moviesapp.domain.repository.DataBaseRepository
 import com.example.moviesapp.presentation.authentication.database.entities.UserEntity
@@ -27,7 +28,8 @@ class DataBaseRepositoryImpl constructor(private val userDao: UserDao) /*: DataB
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun ifUserExist(email : String, password: String):Boolean {
-        return userDao.ifUserExist(email,password)
+    suspend fun ifUserExist(email : String, password: String):UserModel {
+        var user = userDao.ifUserExist(email,password)
+        return user.toUserModelWithOutPassword()
     }
 }

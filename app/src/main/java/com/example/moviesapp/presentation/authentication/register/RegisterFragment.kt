@@ -37,7 +37,8 @@ class RegisterFragment : Fragment() {
 
         binding.btnRegister.setOnClickListener {
             if(validateFields()){
-                viewModel.insert(UserModel(binding.edNameInput.text.toString(),
+                viewModel.insert(UserModel(0,
+                    binding.edNameInput.text.toString(),
                     binding.edEmailInput.text.toString(),
                     binding.edPasswordInput.text.toString().toSha256()))
                 goBack()

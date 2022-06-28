@@ -10,4 +10,11 @@ fun UserModel.toUserEntity() = UserEntity(
     password = this.password
 )
 
+fun UserEntity.toUserModelWithOutPassword() = UserModel(
+    id = this.id ?: 0,
+    email = this.email,
+    name = this.name,
+    password = ""
+)
+
 //fun List<MovieDTO>.toListOfMovieModel() = this.map { it.toMovieModel() }
