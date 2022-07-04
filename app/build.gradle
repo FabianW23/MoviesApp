@@ -79,5 +79,6 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest"
     testImplementation "androidx.arch.core:core-testing:$coreTesting"
     testImplementation "io.mockk:mockk:$mockk"
-
 }
+
+apply plugin: 'com.google.gms.google-services'

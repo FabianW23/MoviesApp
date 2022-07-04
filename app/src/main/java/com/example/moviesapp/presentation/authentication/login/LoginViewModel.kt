@@ -2,31 +2,24 @@ package com.example.moviesapp.presentation.authentication.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.moviesapp.domain.model.UserModel
-import com.example.moviesapp.presentation.authentication.database.DataBaseRepositoryImpl
+import com.example.moviesapp.domain.repository.UserRepository
+import com.example.moviesapp.domain.usecase.authentication.SelectUserUseCase
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(private val dataBaseRepositoryImpl: DataBaseRepositoryImpl) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val selectUserUseCase: SelectUserUseCase, val googleSignInOptions: GoogleSignInOptions) : ViewModel() {
 
     val isUserEnableToLogin : MutableLiveData<UserModel> = MutableLiveData()
 
     fun validateUser(email: String, password: String) {
         viewModelScope.launch {
-            val ifUserExist = dataBaseRepositoryImpl.ifUserExist(email, password)
+            val ifUserExist = selectUserUseCase(email, password)
             isUserEnableToLogin.postValue(ifUserExist)
         }
-    }
-}
-
-class LoginViewModelFactory(private val repository: DataBaseRepositoryImpl) :
-    ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return LoginViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

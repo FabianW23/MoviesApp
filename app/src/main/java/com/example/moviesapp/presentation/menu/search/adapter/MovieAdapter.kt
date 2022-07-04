@@ -3,18 +3,16 @@ package com.example.moviesapp.presentation.menu.search.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.moviesapp.R
-import com.example.moviesapp.databinding.FragmentSearchBinding
 import com.example.moviesapp.databinding.MovieRowItemBinding
-import com.example.moviesapp.presentation.menu.search.SearchFragmentDirections
 import com.example.moviesapp.domain.model.MovieModel
+import com.example.moviesapp.presentation.menu.search.SearchFragmentDirections
 import com.squareup.picasso.Picasso
 
-class MovieAdapter(val movie:List<MovieModel>):RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
+
+class MovieAdapter(var movie:List<MovieModel>):RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
 
     lateinit var binding: MovieRowItemBinding
 
@@ -51,4 +49,6 @@ class MovieAdapter(val movie:List<MovieModel>):RecyclerView.Adapter<MovieAdapter
     override fun getItemCount(): Int {
         return movie.size
     }
+
+
 }

@@ -29,6 +29,7 @@
         android:id="@+id/etPassword"
         style="@style/login_edit_texts"
         android:importantForAutofill="no"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword"

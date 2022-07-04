@@ -2,7 +2,7 @@ package com.example.moviesapp.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.moviesapp.domain.model.MovieModel
-import com.example.moviesapp.domain.usecase.GetTopRatedMoviesUseCase
+import com.example.moviesapp.domain.usecase.movie.GetTopRatedMoviesUseCase
 import com.example.moviesapp.presentation.menu.home.HomeViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery

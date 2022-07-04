@@ -1,10 +1,10 @@
-package com.example.moviesapp.domain.usecase
+package com.example.moviesapp.domain.usecase.authentication
 
 import com.example.moviesapp.data.repository.MovieRepositoryImpl
 import com.example.moviesapp.domain.model.MovieModel
 import com.example.moviesapp.domain.model.UserModel
 
-interface RegisterUserUseCase {
+interface SelectUserUseCase {
 
-    suspend operator fun invoke(userModel: UserModel)
+    suspend operator fun invoke(email : String, password: String):UserModel?
 }

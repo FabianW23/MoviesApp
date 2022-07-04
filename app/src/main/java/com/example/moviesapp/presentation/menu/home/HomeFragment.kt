@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentHomeBinding
 import com.example.moviesapp.domain.model.MovieModel
 import com.example.moviesapp.presentation.menu.home.adapter.MovieTopAdapter
@@ -36,8 +37,8 @@ class HomeFragment : Fragment() {
     private fun initTrending(){
         val movie = movies[Random.nextInt(movies.size)]
         binding.tvTrendingMovieTitle.text = movie.title
-        Picasso.get().load(movie.BackDropPath).into(binding.imTrendingMovieTrailer)
-        Picasso.get().load(movie.posterUrlPath).into(binding.imTrendingMoviePoster)
+        Picasso.get().load(movie.BackDropPath).placeholder(R.drawable.progress_animation).into(binding.imTrendingMovieTrailer)
+        Picasso.get().load(movie.posterUrlPath).placeholder(R.drawable.progress_animation).into(binding.imTrendingMoviePoster)
     }
 
     override fun onCreateView(

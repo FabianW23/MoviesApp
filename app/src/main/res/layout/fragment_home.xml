@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_210dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/stranger_things"
+                    tools:src="@drawable/stranger_things"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -53,7 +53,7 @@
                     android:layout_width="@dimen/dimen_120dp"
                     android:layout_height="@dimen/dimen_180dp"
                     android:layout_marginStart="@dimen/dimen_24dp"
-                    android:src="@drawable/poster_placeholder"
+                    tools:src="@drawable/poster_placeholder"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
