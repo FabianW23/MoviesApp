@@ -7,7 +7,7 @@ import javax.inject.Inject
 class RemoteDataSourceImpl @Inject constructor(private val api: MovieApi): RemoteDataSource {
 
     override suspend fun getMovies(): List<MovieDTO> {
-        return  api.getCollectionMovies().items ?: listOf()
+        return  api.getCollectionMovies().items?.sortedBy { it.title } ?: listOf()
     }
 
     override suspend fun getTopRatedMovies(): List<MovieDTO> {

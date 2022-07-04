@@ -1,4 +1,4 @@
-package com.example.moviesapp.domain.usecase.impl.authentication
+package com.example.moviesapp.domain.usecase.authentication.impl
 
 import com.example.moviesapp.domain.usecase.authentication.FireBaseGoogleLoginUseCase
 

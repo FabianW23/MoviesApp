@@ -38,7 +38,7 @@ class MovieRepositoryImplTest {
     }
 
     @Test
-    fun `getMovies should call remoteDataSource getMovies() toListOfMovieModel()`() =
+    fun `movieRepositoryImpl getMovies should call remoteDataSource getMovies() toListOfMovieModel()`() =
         runBlockingTest {
             // Given
             val expectedResult = listOf<MovieModel>()
@@ -52,7 +52,7 @@ class MovieRepositoryImplTest {
         }
 
     @Test
-    fun `getTopRatedMovies should call remoteDataSource getTopRatedMovies() toListOfMovieModel()`() =
+    fun `movieRepositoryImpl getTopRatedMovies should call remoteDataSource getTopRatedMovies() toListOfMovieModel()`() =
         runBlockingTest {
             // Given
             val expectedResult = listOf<MovieModel>()

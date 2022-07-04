@@ -1,12 +1,9 @@
 package com.example.moviesapp.domain
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.moviesapp.domain.model.InteractionModel
 import com.example.moviesapp.domain.model.MovieModel
-import com.example.moviesapp.domain.repository.InteractionRepository
 import com.example.moviesapp.domain.repository.MovieRepository
-import com.example.moviesapp.domain.usecase.impl.GetInteractionsUseCaseImpl
-import com.example.moviesapp.domain.usecase.impl.GetMoviesUseCaseImpl
+import com.example.moviesapp.domain.usecase.movie.impl.GetMoviesUseCaseImpl
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify

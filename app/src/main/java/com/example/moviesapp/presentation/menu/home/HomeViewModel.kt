@@ -5,10 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.presentation.di.IoDispatcher
 import com.example.moviesapp.domain.model.MovieModel
-import com.example.moviesapp.domain.usecase.GetTopRatedMoviesUseCase
+import com.example.moviesapp.domain.usecase.movie.GetTopRatedMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

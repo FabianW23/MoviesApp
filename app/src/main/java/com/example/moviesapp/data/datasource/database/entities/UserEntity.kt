@@ -1,4 +1,4 @@
-package com.example.moviesapp.presentation.authentication.database.entities
+package com.example.moviesapp.data.datasource.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
