@@ -4,12 +4,16 @@ import com.example.moviesapp.domain.usecase.interaction.GetInteractionsUseCase
 import com.example.moviesapp.domain.usecase.movie.GetMoviesUseCase
 import com.example.moviesapp.domain.usecase.movie.GetTopRatedMoviesUseCase
 import com.example.moviesapp.domain.usecase.authentication.RegisterUserUseCase
+import com.example.moviesapp.domain.usecase.authentication.SelectUserByEmailUseCase
 import com.example.moviesapp.domain.usecase.authentication.SelectUserUseCase
 import com.example.moviesapp.domain.usecase.interaction.impl.GetInteractionsUseCaseImpl
 import com.example.moviesapp.domain.usecase.movie.impl.GetMoviesUseCaseImpl
 import com.example.moviesapp.domain.usecase.movie.impl.GetTopRatedMoviesUseCaseImpl
 import com.example.moviesapp.domain.usecase.authentication.impl.RegisterUserUseCaseImpl
+import com.example.moviesapp.domain.usecase.authentication.impl.SelectUserByEmailUseCaseImpl
 import com.example.moviesapp.domain.usecase.authentication.impl.SelectUserUseCaseImpl
+import com.example.moviesapp.domain.usecase.validation.Impl.ValidateEmptyFieldImpl
+import com.example.moviesapp.domain.usecase.validation.ValidateEmptyFieldUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -39,4 +43,9 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     abstract fun bindSelectUserUseCase(selectUserUseCaseImpl: SelectUserUseCaseImpl): SelectUserUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindSelectUserByEmailUseCase(selectUserByEmailUseCaseImpl: SelectUserByEmailUseCaseImpl) : SelectUserByEmailUseCase
+
 }

@@ -6,16 +6,16 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.moviesapp.databinding.FragmentSplashBinding
-import com.example.moviesapp.presentation.authentication.login.LoginFragment
 import com.example.moviesapp.presentation.menu.MenuActivity
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.LOGGED_USER_PREFERENCES
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.NAME
 
 class SplashFragment : Fragment() {
 
@@ -27,15 +27,14 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        sharedPref = activity?.getSharedPreferences(LoginFragment.LOGGED_USER_PREFERENCES, Context.MODE_PRIVATE)!!
-        val name = sharedPref?.getString("name",null)
+        sharedPref = activity?.getSharedPreferences(LOGGED_USER_PREFERENCES, Context.MODE_PRIVATE)!!
+        val name = sharedPref?.getString(NAME,null)
         if (name != null){
             navigateToMenuActivity()
         }else{

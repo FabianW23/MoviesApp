@@ -21,11 +21,11 @@
         android:id="@+id/tvUser"
         style="@style/text_bold"
         android:layout_marginTop="16dp"
-        android:text="@string/user"
+        android:text="@string/user_email"
         app:layout_constraintStart_toStartOf="@+id/etUser"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etPassword"
         style="@style/login_edit_texts"
         android:importantForAutofill="no"
@@ -50,7 +50,7 @@
         style="@style/login_button"
         android:layout_marginTop="24dp"
         android:text="@string/login"
-
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvForgottenPassword" />
@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="@+id/etPassword"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etUser"
         style="@style/login_edit_texts"
         app:layout_constraintEnd_toEndOf="parent"

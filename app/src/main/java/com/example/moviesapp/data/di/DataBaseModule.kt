@@ -21,7 +21,8 @@ object DataBaseModule {
         app,
         MovieRoomDatabase::class.java,
         "movie_database"
-    ).build() // The reason we can construct a database for the repo
+    ).fallbackToDestructiveMigration()
+        .build() // The reason we can construct a database for the repo
 
     @Singleton
     @Provides

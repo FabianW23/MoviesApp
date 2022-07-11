@@ -45,7 +45,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,8 +58,16 @@ class HomeFragment : Fragment() {
         if (movies != null) {
             this.movies = movies
             initTrending()
-            initRecycler() // Ahora aqui
+            initRecycler()
         }
     }
+
+    private val voidMovies = listOf<MovieModel>(
+        MovieModel("","","","","","",0.0,""),
+        MovieModel("","","","","","",0.0,""),
+        MovieModel("","","","","","",0.0,""),
+        MovieModel("","","","","","",0.0,""),
+        MovieModel("","","","","","",0.0,"")
+    )
 
 }

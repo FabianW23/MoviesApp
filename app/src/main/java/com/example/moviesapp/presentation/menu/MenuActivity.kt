@@ -1,20 +1,27 @@
 package com.example.moviesapp.presentation.menu
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.view.menu.MenuView
+import androidx.core.view.forEachIndexed
 import androidx.core.view.size
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.ActivityMenuBinding
+import com.example.moviesapp.presentation.authentication.login.LoginFragment
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.LOGGED_USER_PREFERENCES
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.NAME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MenuActivity : AppCompatActivity() {
 
+    private lateinit var sharedPref : SharedPreferences
     private lateinit var binding: ActivityMenuBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +35,16 @@ class MenuActivity : AppCompatActivity() {
         super.onResume()
         var navController = binding.navHostFragment.findNavController()
         binding.navView.setupWithNavController(navController)
-        var menu = binding.navView.getChildAt(3)
+        changeAccountTitleToUserName()
+    }
+
+    private fun changeAccountTitleToUserName() {
+        sharedPref = this.getSharedPreferences(LOGGED_USER_PREFERENCES, Context.MODE_PRIVATE)!!
+        val name = sharedPref?.getString(NAME,null)
+        if (name != null){
+            var menu = binding.navView.menu.getItem(3)
+            menu.title = name.substringBefore(" ")
+        }
     }
 
 }
