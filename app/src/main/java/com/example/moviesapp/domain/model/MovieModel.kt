@@ -10,7 +10,8 @@ data class MovieModel(
     val originalTitle: String,
     val overview: String,
     val posterUrlPath: String,
-    val BackDropPath: String?,
-    val releaseDate: String?,
-    val voteAverage: Double?
+    val BackDropPath: String,
+    val releaseDate: String,
+    val voteAverage: Double,
+    val mediaType: String
 ) : Parcelable

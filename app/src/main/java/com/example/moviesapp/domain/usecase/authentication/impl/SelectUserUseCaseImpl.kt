@@ -8,6 +8,6 @@ import javax.inject.Inject
 class SelectUserUseCaseImpl @Inject constructor(private val userRepository: UserRepository) : SelectUserUseCase{
 
     override suspend operator fun invoke(email : String, password: String):UserModel?{
-        return userRepository.ifUserExist(email,password)
+        return userRepository.selectUser(email,password)
     }
 }

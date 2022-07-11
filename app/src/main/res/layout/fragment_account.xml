@@ -42,9 +42,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/poster_placeholder"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvAvatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textAppearance="@style/text_bold"
+                        android:textSize="24sp"
+                        android:visibility="invisible"
+                        android:background="@color/yellow"
+                        tools:text="F"/>
 
                 </androidx.cardview.widget.CardView>
 

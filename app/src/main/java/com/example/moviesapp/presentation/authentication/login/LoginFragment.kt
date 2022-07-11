@@ -4,29 +4,29 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.moviesapp.R
 import com.example.moviesapp.data.utils.toSha256
 import com.example.moviesapp.databinding.FragmentLoginBinding
 import com.example.moviesapp.domain.model.UserModel
 import com.example.moviesapp.presentation.menu.MenuActivity
+import com.example.moviesapp.presentation.utils.afterTextChanged
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.AVATAR
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.EMAIL
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.ID
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.LOGGED_USER_PREFERENCES
+import com.example.moviesapp.presentation.utils.constants.SharedPreferences.NAME
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -38,15 +38,7 @@ class LoginFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPref = activity?.getSharedPreferences(LOGGED_USER_PREFERENCES,Context.MODE_PRIVATE)!!
-        //checkIfUserIsLoggedIn()
-        viewModel.isUserEnableToLogin.observe(this, Observer(::localLogIn))
-    }
-
-    private fun checkIfUserIsLoggedIn() {
-        val name = sharedPref?.getString(NAME,null)
-        if (name != null){
-            navigateToMenuActivity()
-        }
+        viewModel.isUserRegistered.observe(this, Observer(::localLogIn))
     }
 
     private fun localLogIn(user: UserModel?) {
@@ -66,6 +58,7 @@ class LoginFragment : Fragment() {
             editPrefs?.putInt(ID,user.id)
             editPrefs?.putString(NAME,user.name)
             editPrefs?.putString(EMAIL,user.email)
+            editPrefs?.putString(AVATAR, user.avatar)
             editPrefs?.apply()
             editPrefs?.commit()
         }
@@ -94,7 +87,8 @@ class LoginFragment : Fragment() {
                                     0,
                                     account.displayName.toString(),
                                     account.email.toString(),
-                                    ""))
+                                    "",
+                                    account.photoUrl.toString()))
                                 navigateToMenuActivity()
                             } else {
                                 Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT)
@@ -131,34 +125,34 @@ class LoginFragment : Fragment() {
                 binding.etPassword.text.toString().toSha256())
         }
 
-        binding.etUser.afterTextChanged { user -> print(user) }
+        validateForm()
 
         binding.fabGoogleLogin.setOnClickListener { googleLogIn() }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        clearFields()
+    }
+
+    private fun clearFields() {
+        binding.etPassword.text?.clear()
+        binding.etUser.text?.clear()
+    }
+
+    private fun validateForm() {
+        binding.etUser.afterTextChanged { user -> viewModel.validEmail = viewModel.validateIfFieldIsEmpty(user) && viewModel.validateIfEmailIsValid(user)
+            enableLoginButton()}
+        binding.etPassword.afterTextChanged { password -> viewModel.validPassword = viewModel.validateIfFieldIsEmpty(password)
+            enableLoginButton()}
+    }
+
+    private fun enableLoginButton(){
+        binding.btnLogin.isEnabled = viewModel.validEmail && viewModel.validPassword
     }
 
     private fun navigateToMenuActivity() {
         var intent = Intent(context, MenuActivity::class.java)
         startActivity(intent)
     }
-
-    companion object{
-        const val LOGGED_USER_PREFERENCES = "com.example.moviesapp.LOGED_USER_PREFERENCES"
-        const val EMAIL = "email"
-        const val NAME = "name"
-        const val ID = "id"
-    }
-}
-
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
-        }
-    })
 }

@@ -8,10 +8,11 @@ fun MovieDTO.toMovieModel() = MovieModel(
     this.title ?: "",
     this.originalTitle ?: "",
     this.overview ?: "",
-    IMAGES_URL + this.posterPath ?: "",
-    IMAGES_URL + this.BackDropPath ?: "",
-    this.releaseDate ?: "",
-    this.voteAverage ?: 0.0
+    IMAGES_URL + this.posterPath,
+    IMAGES_URL + this.BackDropPath,
+    this.releaseDate?.substring(0,4) ?: "",
+    this.voteAverage ?: 0.0,
+    this.mediaType ?: ""
 )
 
 fun List<MovieDTO>.toListOfMovieModel() = this.map { it.toMovieModel() }

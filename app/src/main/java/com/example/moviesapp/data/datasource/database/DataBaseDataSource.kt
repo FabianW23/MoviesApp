@@ -7,5 +7,7 @@ import com.example.moviesapp.domain.model.UserModel
 interface DataBaseDataSource {
     suspend fun insertUser(userEntity: UserEntity)
 
-    suspend fun ifUserExist(email : String, password: String): UserModel?
+    suspend fun selectUser(email : String, password: String): UserModel?
+
+    suspend fun selectUserByEmail(email : String): UserModel?
 }

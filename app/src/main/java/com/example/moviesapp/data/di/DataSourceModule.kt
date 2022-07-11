@@ -1,5 +1,7 @@
 package com.example.moviesapp.data.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.example.moviesapp.data.datasource.cache.CacheDataSource
 import com.example.moviesapp.data.datasource.cache.impl.CacheDataSourceImpl
 import com.example.moviesapp.data.datasource.database.DataBaseDataSource

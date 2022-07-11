@@ -16,5 +16,7 @@ data class MovieDTO (
     @SerializedName("release_date")
     val releaseDate: String?,
     @SerializedName("vote_average")
-    val voteAverage: Double?
+    val voteAverage: Double?,
+    @SerializedName("media_type")
+    val mediaType: String?
 )

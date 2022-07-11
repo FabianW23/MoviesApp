@@ -109,6 +109,7 @@
         style="@style/login_button"
         android:layout_marginTop="@dimen/dimen_16dp"
         android:text="@string/accept"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPasswordMessage" />
