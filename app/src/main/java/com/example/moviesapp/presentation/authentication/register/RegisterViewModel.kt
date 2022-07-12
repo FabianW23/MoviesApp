@@ -8,13 +8,21 @@ import com.example.moviesapp.domain.model.UserModel
 import com.example.moviesapp.domain.usecase.authentication.RegisterUserUseCase
 import com.example.moviesapp.domain.usecase.authentication.SelectUserByEmailUseCase
 import com.example.moviesapp.domain.usecase.authentication.SelectUserUseCase
+import com.example.moviesapp.domain.usecase.validation.ValidateEmailFieldUseCase
+import com.example.moviesapp.domain.usecase.validation.ValidateEmptyFieldUseCase
+import com.example.moviesapp.domain.usecase.validation.ValidatePasswordFieldUseCase
+import com.example.moviesapp.domain.utils.HelperTexts
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.consumesAll
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(private val selectUserByEmailUseCase: SelectUserByEmailUseCase,
-                                            private val registerUserUseCase: RegisterUserUseCase) : ViewModel(){
+                                            private val registerUserUseCase: RegisterUserUseCase,
+                                            private val validateEmptyFieldUseCase: ValidateEmptyFieldUseCase,
+                                            private val validatePasswordFieldUseCase: ValidatePasswordFieldUseCase,
+                                            private val validateEmailFieldUseCase: ValidateEmailFieldUseCase) : ViewModel(){
 
     val isUserRegistered : MutableLiveData<UserModel> = MutableLiveData()
     var validName:Boolean = false
@@ -32,7 +40,36 @@ class RegisterViewModel @Inject constructor(private val selectUserByEmailUseCase
         }
     }
 
-    fun validateUserField(field : String):Boolean{
-        return field != ""
+    fun validateUserField(user : String):String{
+        val message = validateEmptyFieldUseCase(user)
+        return if (message == HelperTexts.VALID.message){
+            validName = true
+            ""
+        }else{
+            validName = false
+            message
+        }
+    }
+
+    fun validatePassword(password : String):String{
+        val message = validatePasswordFieldUseCase(password)
+        return if (message == HelperTexts.VALID.message){
+            validPassword = true
+            ""
+        }else{
+            validPassword = false
+            message
+        }
+    }
+
+    fun validateIfEmailIsValid(email : String):String{
+        val message = validateEmailFieldUseCase(email)
+        return if (message == HelperTexts.VALID.message){
+            validEmail = true
+            ""
+        }else{
+            validEmail = false
+            message
+        }
     }
 }

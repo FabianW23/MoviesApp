@@ -12,11 +12,16 @@ import com.example.moviesapp.domain.usecase.movie.impl.GetTopRatedMoviesUseCaseI
 import com.example.moviesapp.domain.usecase.authentication.impl.RegisterUserUseCaseImpl
 import com.example.moviesapp.domain.usecase.authentication.impl.SelectUserByEmailUseCaseImpl
 import com.example.moviesapp.domain.usecase.authentication.impl.SelectUserUseCaseImpl
-import com.example.moviesapp.domain.usecase.validation.Impl.ValidateEmptyFieldImpl
+import com.example.moviesapp.domain.usecase.validation.ValidateEmailFieldUseCase
 import com.example.moviesapp.domain.usecase.validation.ValidateEmptyFieldUseCase
+import com.example.moviesapp.domain.usecase.validation.ValidatePasswordFieldUseCase
+import com.example.moviesapp.domain.usecase.validation.impl.ValidateEmailFieldUseCasedImpl
+import com.example.moviesapp.domain.usecase.validation.impl.ValidateEmptyFieldUseCaseImpl
+import com.example.moviesapp.domain.usecase.validation.impl.ValidatePasswordFieldUseCasedImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -47,5 +52,17 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     abstract fun bindSelectUserByEmailUseCase(selectUserByEmailUseCaseImpl: SelectUserByEmailUseCaseImpl) : SelectUserByEmailUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindValidateEmptyFieldUseCase(validateEmptyFieldUseCaseImpl: ValidateEmptyFieldUseCaseImpl) : ValidateEmptyFieldUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindValidatePasswordFieldUseCase(validatePasswordFieldUseCasedImpl: ValidatePasswordFieldUseCasedImpl) : ValidatePasswordFieldUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindValidateEmailFieldUseCase(validateEmailFieldUseCasedImpl: ValidateEmailFieldUseCasedImpl) : ValidateEmailFieldUseCase
 
 }

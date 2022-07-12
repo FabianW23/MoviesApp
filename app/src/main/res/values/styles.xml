@@ -58,16 +58,6 @@
         <item name="android:textColor">@color/dark_gray</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="login_edit_texts">
-        <item name="android:layout_width">@dimen/dimen_300dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/dimen_4dp</item>
-        <item name="android:textColor">@color/gray</item>
-        <item name="android:background">@drawable/custom_edit_text</item>
-        <item name="android:minHeight">@dimen/dimen_48dp</item>
-        <item name="android:paddingEnd">@dimen/dimen_16dp</item>
-        <item name="android:paddingStart">@dimen/dimen_16dp</item>
-    </style>
     <style name="yellow_button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -108,22 +98,36 @@
         <item name="android:textSize">@dimen/text_size_37sp</item>
         <item name="android:gravity">center_vertical|center_horizontal</item>
     </style>
-    <style name="register_edit_texts" parent="Base.Widget.MaterialComponents.TextInputLayout">
+    <style name="login_edit_texts" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="materialThemeOverlay">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+        <item name="android:layout_width">@dimen/dimen_300dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dimen_4dp</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="helperTextTextColor">@color/red</item>
+        <item name="android:background">@drawable/custom_edit_text</item>
+        <item name="android:paddingEnd">@dimen/dimen_16dp</item>
+        <item name="android:paddingStart">@dimen/dimen_16dp</item>
+    </style>
+    <style name="edit_texts" parent="Base.Widget.MaterialComponents.TextInputLayout">
         <item name="materialThemeOverlay">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
         <item name="android:layout_width">@dimen/dimen_300dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="expandedHintEnabled">false</item>
+        <item name="helperTextTextColor">@color/red</item>
         <item name="boxCornerRadiusTopStart">@dimen/dimen_10dp</item>
         <item name="boxCornerRadiusBottomStart">@dimen/dimen_10dp</item>
         <item name="boxCornerRadiusTopEnd">@dimen/dimen_10dp</item>
         <item name="boxCornerRadiusBottomEnd">@dimen/dimen_10dp</item>
     </style>
-    <style name="register_password_edit_texts" parent="Base.Widget.MaterialComponents.TextInputLayout">
+    <style name="password_edit_texts" parent="Base.Widget.MaterialComponents.TextInputLayout">
         <item name="materialThemeOverlay">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
         <item name="android:layout_width">@dimen/dimen_300dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="expandedHintEnabled">false</item>
         <item name="endIconMode">password_toggle</item>
+        <item name="helperTextTextColor">@color/red</item>
         <item name="boxCornerRadiusTopStart">@dimen/dimen_10dp</item>
         <item name="boxCornerRadiusBottomStart">@dimen/dimen_10dp</item>
         <item name="boxCornerRadiusTopEnd">@dimen/dimen_10dp</item>
