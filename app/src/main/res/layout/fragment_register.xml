@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edName"
+        app:layout_constraintStart_toStartOf="@+id/etName"
         app:layout_constraintTop_toBottomOf="@id/imBack"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -38,53 +38,53 @@
         android:text="@string/create_an_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edName"
+        app:layout_constraintStart_toStartOf="@+id/etName"
         app:layout_constraintTop_toBottomOf="@+id/tvLogo" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edName"
-        style="@style/register_edit_texts"
+        android:id="@+id/etName"
+        style="@style/edit_texts"
         android:layout_marginTop="@dimen/dimen_8dp"
         android:hint="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/edEmail"
+        app:layout_constraintBottom_toTopOf="@+id/etEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUser">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edNameInput"
+            android:id="@+id/etNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edEmail"
-        style="@style/register_edit_texts"
+        android:id="@+id/etEmail"
+        style="@style/edit_texts"
         android:layout_marginTop="@dimen/dimen_16dp"
         android:hint="@string/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edName">
+        app:layout_constraintTop_toBottomOf="@+id/etName">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edEmailInput"
+            android:id="@+id/etEmailInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edPassword"
-        style="@style/register_password_edit_texts"
+        android:id="@+id/etPassword"
+        style="@style/password_edit_texts"
         android:layout_marginTop="@dimen/dimen_16dp"
         android:hint="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edEmail">
+        app:layout_constraintTop_toBottomOf="@+id/etEmail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edPasswordInput"
+            android:id="@+id/etPasswordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
@@ -101,8 +101,8 @@
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edPassword"
-        app:layout_constraintTop_toBottomOf="@+id/edPassword" />
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"

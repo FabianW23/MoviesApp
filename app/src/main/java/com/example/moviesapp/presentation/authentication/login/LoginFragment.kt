@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.moviesapp.data.utils.toSha256
 import com.example.moviesapp.databinding.FragmentLoginBinding
 import com.example.moviesapp.domain.model.UserModel
+import com.example.moviesapp.domain.utils.HelperTexts
 import com.example.moviesapp.presentation.menu.MenuActivity
 import com.example.moviesapp.presentation.utils.afterTextChanged
 import com.example.moviesapp.presentation.utils.constants.SharedPreferences.AVATAR
@@ -121,8 +122,8 @@ class LoginFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener {
             viewModel.validateUser(
-                binding.etUser.text.toString(),
-                binding.etPassword.text.toString().toSha256())
+                binding.etUserEmailInput.text.toString(),
+                binding.etPasswordInput.text.toString().toSha256())
         }
 
         validateForm()
@@ -130,20 +131,24 @@ class LoginFragment : Fragment() {
         binding.fabGoogleLogin.setOnClickListener { googleLogIn() }
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onStart() {
+        super.onStart()
         clearFields()
     }
 
     private fun clearFields() {
-        binding.etPassword.text?.clear()
-        binding.etUser.text?.clear()
+        binding.etPasswordInput.text?.clear()
+        binding.etUserEmailInput.text?.clear()
+        binding.etUserEmail.helperText = ""
+        binding.etPassword.helperText = ""
     }
 
     private fun validateForm() {
-        binding.etUser.afterTextChanged { user -> viewModel.validEmail = viewModel.validateIfFieldIsEmpty(user) && viewModel.validateIfEmailIsValid(user)
+        binding.etUserEmailInput.afterTextChanged { user -> binding.etUserEmail.helperText = viewModel.validateIfEmailIsValid(user)
+            viewModel.validEmail = binding.etUserEmail.helperText.isNullOrEmpty()
             enableLoginButton()}
-        binding.etPassword.afterTextChanged { password -> viewModel.validPassword = viewModel.validateIfFieldIsEmpty(password)
+        binding.etPasswordInput.afterTextChanged { password -> binding.etPassword.helperText = viewModel.validatePassword(password)
+            viewModel.validPassword = binding.etPassword.helperText.isNullOrEmpty()
             enableLoginButton()}
     }
 

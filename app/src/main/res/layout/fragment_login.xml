@@ -11,29 +11,37 @@
         android:id="@+id/tvTitle"
         style="@style/text_app_logo"
         android:fontFamily="@font/anton"
+        android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
         android:id="@+id/tvUser"
         style="@style/text_bold"
         android:layout_marginTop="16dp"
         android:text="@string/user_email"
-        app:layout_constraintStart_toStartOf="@+id/etUser"
+        app:layout_constraintStart_toStartOf="@+id/etUserEmail"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etPassword"
-        style="@style/login_edit_texts"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
+        style="@style/password_edit_texts"
+        android:layout_marginTop="@dimen/dimen_4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPasswordInput"
+            android:background="@drawable/custom_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvPassword"
@@ -43,7 +51,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/password"
         app:layout_constraintStart_toStartOf="@+id/etPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etUser" />
+        app:layout_constraintTop_toBottomOf="@+id/etUserEmail" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
@@ -63,13 +71,21 @@
         app:layout_constraintStart_toStartOf="@+id/etPassword"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etUser"
-        style="@style/login_edit_texts"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etUserEmail"
+        style="@style/edit_texts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUser"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUser">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etUserEmailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/tvLoginOptions"

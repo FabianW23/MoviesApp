@@ -1,6 +1,6 @@
 package com.example.moviesapp.domain.usecase.validation
 
-interface ValidateEmptyFieldUseCase {
+interface ValidateEmailFieldUseCase {
 
     operator fun invoke(text : String): String
 }

@@ -30,9 +30,9 @@ class RegisterFragment : Fragment() {
     private fun checkIfUserIsRegistered(user: UserModel?) {
         if (user == null){
             viewModel.insert(UserModel(0,
-                binding.edNameInput.text.toString(),
-                binding.edEmailInput.text.toString(),
-                binding.edPasswordInput.text.toString().toSha256()))
+                binding.etNameInput.text.toString(),
+                binding.etEmailInput.text.toString(),
+                binding.etPasswordInput.text.toString().toSha256()))
             goBack()
         }else{
             Toast.makeText(context,getString(R.string.user_is_already_registered), Toast.LENGTH_SHORT).show()
@@ -55,7 +55,7 @@ class RegisterFragment : Fragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-                viewModel.validateUser(binding.edEmailInput.text.toString())
+                viewModel.validateUser(binding.etEmailInput.text.toString())
         }
 
         validateForm()
@@ -66,11 +66,14 @@ class RegisterFragment : Fragment() {
     }
 
     private fun validateForm() {
-        binding.edNameInput.afterTextChanged { user -> viewModel.validName = viewModel.validateUserField(user)
+        binding.etNameInput.afterTextChanged { user -> binding.etName.helperText = viewModel.validateUserField(user)
+            viewModel.validName = binding.etName.helperText.isNullOrEmpty()
             enableLoginButton()}
-        binding.edEmailInput.afterTextChanged { user -> viewModel.validEmail = viewModel.validateUserField(user)
+        binding.etEmailInput.afterTextChanged { email -> binding.etEmail.helperText = viewModel.validateIfEmailIsValid(email)
+            viewModel.validEmail = binding.etEmail.helperText.isNullOrEmpty()
             enableLoginButton()}
-        binding.edPasswordInput.afterTextChanged { password -> viewModel.validPassword = viewModel.validateUserField(password)
+        binding.etPasswordInput.afterTextChanged { password -> binding.etPassword.helperText = viewModel.validatePassword(password)
+            viewModel.validPassword = binding.etPassword.helperText.isNullOrEmpty()
             enableLoginButton()}
     }
 
