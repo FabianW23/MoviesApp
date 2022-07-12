@@ -33,10 +33,8 @@ class LoginViewModel @Inject constructor(private val selectUserUseCase: SelectUs
     fun validatePassword(password : String):String{
         val message = validatePasswordFieldUseCase(password)
         return if (message == HelperTexts.VALID.message){
-            validPassword = true
             ""
         }else{
-            validPassword = false
             message
         }
     }
@@ -44,10 +42,8 @@ class LoginViewModel @Inject constructor(private val selectUserUseCase: SelectUs
     fun validateIfEmailIsValid(email : String):String{
         val message = validateEmailFieldUseCase(email)
         return if (message == HelperTexts.VALID.message){
-            validEmail = true
             ""
         }else{
-            validEmail = false
             message
         }
     }

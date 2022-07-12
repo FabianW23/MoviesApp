@@ -43,10 +43,8 @@ class RegisterViewModel @Inject constructor(private val selectUserByEmailUseCase
     fun validateUserField(user : String):String{
         val message = validateEmptyFieldUseCase(user)
         return if (message == HelperTexts.VALID.message){
-            validName = true
             ""
         }else{
-            validName = false
             message
         }
     }
@@ -54,10 +52,8 @@ class RegisterViewModel @Inject constructor(private val selectUserByEmailUseCase
     fun validatePassword(password : String):String{
         val message = validatePasswordFieldUseCase(password)
         return if (message == HelperTexts.VALID.message){
-            validPassword = true
             ""
         }else{
-            validPassword = false
             message
         }
     }
@@ -65,10 +61,8 @@ class RegisterViewModel @Inject constructor(private val selectUserByEmailUseCase
     fun validateIfEmailIsValid(email : String):String{
         val message = validateEmailFieldUseCase(email)
         return if (message == HelperTexts.VALID.message){
-            validEmail = true
             ""
         }else{
-            validEmail = false
             message
         }
     }

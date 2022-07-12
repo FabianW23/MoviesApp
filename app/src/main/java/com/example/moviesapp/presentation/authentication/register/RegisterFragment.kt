@@ -67,10 +67,13 @@ class RegisterFragment : Fragment() {
 
     private fun validateForm() {
         binding.etNameInput.afterTextChanged { user -> binding.etName.helperText = viewModel.validateUserField(user)
+            viewModel.validName = binding.etName.helperText.isNullOrEmpty()
             enableLoginButton()}
         binding.etEmailInput.afterTextChanged { email -> binding.etEmail.helperText = viewModel.validateIfEmailIsValid(email)
+            viewModel.validEmail = binding.etEmail.helperText.isNullOrEmpty()
             enableLoginButton()}
         binding.etPasswordInput.afterTextChanged { password -> binding.etPassword.helperText = viewModel.validatePassword(password)
+            viewModel.validPassword = binding.etPassword.helperText.isNullOrEmpty()
             enableLoginButton()}
     }
 

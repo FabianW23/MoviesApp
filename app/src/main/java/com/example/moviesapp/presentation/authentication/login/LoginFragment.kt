@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.moviesapp.data.utils.toSha256
 import com.example.moviesapp.databinding.FragmentLoginBinding
 import com.example.moviesapp.domain.model.UserModel
+import com.example.moviesapp.domain.utils.HelperTexts
 import com.example.moviesapp.presentation.menu.MenuActivity
 import com.example.moviesapp.presentation.utils.afterTextChanged
 import com.example.moviesapp.presentation.utils.constants.SharedPreferences.AVATAR
@@ -144,8 +145,10 @@ class LoginFragment : Fragment() {
 
     private fun validateForm() {
         binding.etUserEmailInput.afterTextChanged { user -> binding.etUserEmail.helperText = viewModel.validateIfEmailIsValid(user)
+            viewModel.validEmail = binding.etUserEmail.helperText.isNullOrEmpty()
             enableLoginButton()}
         binding.etPasswordInput.afterTextChanged { password -> binding.etPassword.helperText = viewModel.validatePassword(password)
+            viewModel.validPassword = binding.etPassword.helperText.isNullOrEmpty()
             enableLoginButton()}
     }
 
