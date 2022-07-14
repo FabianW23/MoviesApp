@@ -1,4 +1,4 @@
-package com.example.moviesapp.data
+package com.example.moviesapp.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.moviesapp.data.datasource.cache.CacheDataSource
