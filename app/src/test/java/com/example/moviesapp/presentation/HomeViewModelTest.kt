@@ -24,8 +24,6 @@ class HomeViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    private var testCoroutineDispatcher = TestCoroutineDispatcher()
-
     @MockK
     lateinit var getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase
 

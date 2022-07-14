@@ -1,4 +1,4 @@
-package com.example.moviesapp.data
+package com.example.moviesapp.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.moviesapp.data.datasource.cache.CacheDataSource
@@ -14,12 +14,14 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class MovieRepositoryImplTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
