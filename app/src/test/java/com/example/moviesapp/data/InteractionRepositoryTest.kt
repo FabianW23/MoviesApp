@@ -23,8 +23,6 @@ class InteractionRepositoryTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    private var testCoroutineDispatcher = TestCoroutineDispatcher()
-
     @MockK
     lateinit var cacheDataSource: CacheDataSource
 

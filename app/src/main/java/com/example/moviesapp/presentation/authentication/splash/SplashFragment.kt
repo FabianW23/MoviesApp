@@ -1,8 +1,6 @@
 package com.example.moviesapp.presentation.authentication.splash
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,14 +10,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.moviesapp.data.datasource.sharedpreferences.constants.SharedPreferences.NAME
 import com.example.moviesapp.databinding.FragmentSplashBinding
 import com.example.moviesapp.presentation.menu.MenuActivity
-import com.example.moviesapp.presentation.utils.constants.SharedPreferences.LOGGED_USER_PREFERENCES
-import com.example.moviesapp.presentation.utils.constants.SharedPreferences.NAME
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
 
-    private lateinit var sharedPref : SharedPreferences
     private lateinit var binding: FragmentSplashBinding
     private val viewModel : SplashViewModel by viewModels()
 
@@ -33,9 +31,8 @@ class SplashFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        sharedPref = activity?.getSharedPreferences(LOGGED_USER_PREFERENCES, Context.MODE_PRIVATE)!!
-        val name = sharedPref?.getString(NAME,null)
-        if (name != null){
+        val name = viewModel.getString(NAME)
+        if (name != ""){
             navigateToMenuActivity()
         }else{
             goToLoginScreen()
@@ -51,7 +48,7 @@ class SplashFragment : Fragment() {
 
     private fun navigateToMenuActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
-            var intent = Intent(context, MenuActivity::class.java)
+            val intent = Intent(context, MenuActivity::class.java)
             startActivity(intent)
         }, 2000)
 

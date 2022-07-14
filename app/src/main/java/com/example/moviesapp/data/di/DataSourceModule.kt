@@ -8,6 +8,8 @@ import com.example.moviesapp.data.datasource.database.DataBaseDataSource
 import com.example.moviesapp.data.datasource.database.DataBaseDataSourceImpl
 import com.example.moviesapp.data.datasource.remote.RemoteDataSource
 import com.example.moviesapp.data.datasource.remote.RemoteDataSourceImpl
+import com.example.moviesapp.data.datasource.sharedpreferences.SharedPreferencesDataSource
+import com.example.moviesapp.data.datasource.sharedpreferences.impl.SharedPreferencesDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -30,4 +32,7 @@ abstract class DataSourceModule {
     @Singleton
     abstract fun bindDataBaseDataSource(dataBaseDataSourceImpl: DataBaseDataSourceImpl): DataBaseDataSource
 
+    @Binds
+    @Singleton
+    abstract fun bindSharedPreferencesDataSource(sharedPreferencesDataSourceImpl: SharedPreferencesDataSourceImpl): SharedPreferencesDataSource
 }

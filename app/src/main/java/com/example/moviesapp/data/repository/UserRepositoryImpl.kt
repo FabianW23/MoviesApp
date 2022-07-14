@@ -13,10 +13,10 @@ class UserRepositoryImpl @Inject constructor(private val dataBaseDataSource: Dat
     }
 
     override suspend fun selectUser(email : String, password: String): UserModel? {
-        return dataBaseDataSource.selectUser(email,password) ?: null
+        return dataBaseDataSource.selectUser(email,password)
     }
 
     override suspend fun selectUserByEmail(email: String): UserModel? {
-        return dataBaseDataSource.selectUserByEmail(email) ?: null
+        return dataBaseDataSource.selectUserByEmail(email)
     }
 }
