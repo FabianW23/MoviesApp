@@ -27,8 +27,8 @@ class FireBaseAuthenticationServiceImpl @Inject constructor(@ActivityContext pri
             .build()
         val activity = context as Activity
         var gsc = GoogleSignIn.getClient(activity, gso)
-        val intent = gsc?.signInIntent
-        gsc?.signOut()
+        val intent = gsc.signInIntent
+        gsc.signOut()
         startActivityForResult(activity, intent, 100, null)
     }
 

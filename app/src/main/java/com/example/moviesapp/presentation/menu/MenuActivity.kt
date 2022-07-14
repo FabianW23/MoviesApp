@@ -14,8 +14,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.ActivityMenuBinding
 import com.example.moviesapp.presentation.authentication.login.LoginFragment
-import com.example.moviesapp.presentation.utils.constants.SharedPreferences.LOGGED_USER_PREFERENCES
-import com.example.moviesapp.presentation.utils.constants.SharedPreferences.NAME
+import com.example.moviesapp.data.datasource.sharedpreferences.constants.SharedPreferences.LOGGED_USER_PREFERENCES
+import com.example.moviesapp.data.datasource.sharedpreferences.constants.SharedPreferences.NAME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,7 +40,7 @@ class MenuActivity : AppCompatActivity() {
 
     private fun changeAccountTitleToUserName() {
         sharedPref = this.getSharedPreferences(LOGGED_USER_PREFERENCES, Context.MODE_PRIVATE)!!
-        val name = sharedPref?.getString(NAME,null)
+        val name = sharedPref.getString(NAME,null)
         if (name != null){
             var menu = binding.navView.menu.getItem(3)
             menu.title = name.substringBefore(" ")

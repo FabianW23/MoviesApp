@@ -16,9 +16,9 @@ import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentAccountBinding
 import com.example.moviesapp.domain.model.InteractionModel
 import com.example.moviesapp.presentation.menu.account.adapter.ProfileListsAdapter
-import com.example.moviesapp.presentation.utils.constants.SharedPreferences.AVATAR
-import com.example.moviesapp.presentation.utils.constants.SharedPreferences.LOGGED_USER_PREFERENCES
-import com.example.moviesapp.presentation.utils.constants.SharedPreferences.NAME
+import com.example.moviesapp.data.datasource.sharedpreferences.constants.SharedPreferences.AVATAR
+import com.example.moviesapp.data.datasource.sharedpreferences.constants.SharedPreferences.LOGGED_USER_PREFERENCES
+import com.example.moviesapp.data.datasource.sharedpreferences.constants.SharedPreferences.NAME
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -42,7 +42,7 @@ class AccountFragment : Fragment() {
     private fun initRecycler() {
         binding.rvProfileData.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        var adapter = ProfileListsAdapter(interactions)
+        val adapter = ProfileListsAdapter(interactions)
         binding.rvProfileData.adapter = adapter
     }
 
@@ -56,14 +56,14 @@ class AccountFragment : Fragment() {
     }
 
     private fun printUserData() {
-        if (sharedPref.getString(NAME,null) != null) {
-            binding.tvUserName.text = sharedPref.getString(NAME,getString(R.string.User))
-            val avatar = sharedPref.getString(AVATAR, null)
-            if (avatar != null && avatar != ""){
+        if (viewModel.getString(NAME) != "") {
+            binding.tvUserName.text = viewModel.getString(NAME)
+            val avatar = viewModel.getString(AVATAR)
+            if (avatar != ""){
                 Picasso.get().load(avatar).into(binding.imAvatar)
             }else{
                 binding.tvAvatar.isVisible = true
-                binding.tvAvatar.text = (sharedPref.getString(NAME,getString(R.string.User)) as String).first().toString()
+                binding.tvAvatar.text = (viewModel.getString(NAME)).first().toString()
             }
         }
     }
@@ -86,21 +86,21 @@ class AccountFragment : Fragment() {
     }
 
     private fun googleLogOut() {
-        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client))
             .requestEmail()
             .build()
-        var gsc = this.activity?.let {
+        val gsc = this.activity?.let {
             GoogleSignIn.getClient(it, gso)}
         gsc?.signOut()?.addOnCompleteListener {
-            Toast.makeText(context, getString(R.string.logging_out), Toast.LENGTH_SHORT)
+            Toast.makeText(context, getString(R.string.logging_out), Toast.LENGTH_SHORT).show()
             clearPreferences()
             activity?.finish()
         }
     }
 
     private fun clearPreferences() {
-        sharedPref?.edit()?.clear()?.commit()
+        viewModel.clearString()
     }
 }
 

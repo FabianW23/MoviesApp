@@ -1,4 +1,4 @@
-package com.example.moviesapp.presentation.menu.home;
+package com.example.moviesapp.presentation.menu.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

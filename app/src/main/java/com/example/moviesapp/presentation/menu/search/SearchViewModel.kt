@@ -1,4 +1,4 @@
-package com.example.moviesapp.presentation.menu.search;
+package com.example.moviesapp.presentation.menu.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

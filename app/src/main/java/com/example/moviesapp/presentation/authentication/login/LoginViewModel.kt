@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviesapp.domain.model.UserModel
 import com.example.moviesapp.domain.usecase.authentication.SelectUserUseCase
+import com.example.moviesapp.domain.usecase.string.PutStringUseCase
 import com.example.moviesapp.domain.usecase.validation.ValidateEmailFieldUseCase
 import com.example.moviesapp.domain.usecase.validation.ValidatePasswordFieldUseCase
 import com.example.moviesapp.domain.utils.HelperTexts
@@ -17,7 +18,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(private val selectUserUseCase: SelectUserUseCase,
                                          val googleSignInOptions: GoogleSignInOptions,
                                          private val validatePasswordFieldUseCase: ValidatePasswordFieldUseCase,
-                                         private val validateEmailFieldUseCase: ValidateEmailFieldUseCase) : ViewModel() {
+                                         private val validateEmailFieldUseCase: ValidateEmailFieldUseCase,
+                                         private val putStringUseCase: PutStringUseCase) : ViewModel() {
 
     val isUserRegistered : MutableLiveData<UserModel> = MutableLiveData()
     var validEmail:Boolean = false
@@ -46,5 +48,9 @@ class LoginViewModel @Inject constructor(private val selectUserUseCase: SelectUs
         }else{
             message
         }
+    }
+
+    fun putString(id: String, value: String){
+        putStringUseCase(id,value)
     }
 }
