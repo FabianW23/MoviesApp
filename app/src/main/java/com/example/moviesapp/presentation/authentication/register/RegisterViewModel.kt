@@ -13,7 +13,6 @@ import com.example.moviesapp.domain.usecase.validation.ValidateEmptyFieldUseCase
 import com.example.moviesapp.domain.usecase.validation.ValidatePasswordFieldUseCase
 import com.example.moviesapp.domain.utils.HelperTexts
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.consumesAll
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

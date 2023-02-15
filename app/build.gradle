@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.moviesapp"
@@ -37,6 +37,10 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0-rc02'
     }
 }
 
@@ -55,6 +59,10 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 
+    //lifeCycle
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+
     //Android Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
@@ -69,11 +77,24 @@ dependencies {
 
     //FireBase
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    implementation 'com.google.firebase:firebase-messaging:23.1.1'
 
     // Room components
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
+    
+    //Compose
+    implementation "androidx.activity:activity-compose:1.6.1"
+    implementation "androidx.navigation:navigation-compose:2.5.3"
+    implementation "androidx.compose.material3:material3:1.0.1"
+    implementation "androidx.compose.material3:material3-window-size-class:1.0.1"
+
+    implementation("androidx.compose.ui:ui:1.2.0-rc02")
+    // Tooling support (Previews, etc.)
+    debugImplementation "androidx.compose.ui:ui-tooling:1.2.0-rc02"
+    implementation "androidx.compose.ui:ui-tooling-preview:1.2.0-rc02"
+    implementation "io.coil-kt:coil-compose:2.2.2"
 
     //Tests
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest"

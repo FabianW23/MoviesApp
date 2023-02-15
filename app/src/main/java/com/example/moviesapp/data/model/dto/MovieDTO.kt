@@ -9,14 +9,14 @@ data class MovieDTO (
     val originalTitle: String?,
     @SerializedName("overview")
     val overview: String?,
-    @SerializedName("poster_path")
-    val posterPath: String?,
+    @SerializedName("vote_average")
+    val voteAverage: Double?,
     @SerializedName("backdrop_path")
     val BackDropPath: String?,
     @SerializedName("release_date")
     val releaseDate: String?,
-    @SerializedName("vote_average")
-    val voteAverage: Double?,
+    @SerializedName("poster_path")
+    val posterPath: String?,
     @SerializedName("media_type")
     val mediaType: String?
 )

@@ -8,11 +8,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.compose.rememberAsyncImagePainter
+import com.example.moviesapp.data.model.dto.MovieDTO
 import com.example.moviesapp.databinding.FragmentSearchBinding
 import com.example.moviesapp.domain.model.MovieModel
+import com.example.moviesapp.presentation.menu.play.getMovies
 import com.example.moviesapp.presentation.menu.search.adapter.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -25,6 +46,7 @@ class SearchFragment : Fragment() {
     private val viewModel : SearchViewModel by viewModels()
     private lateinit var movies : List<MovieModel>
     private lateinit var adapter : MovieAdapter
+    private lateinit var moviesColumView: ComposeView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +54,17 @@ class SearchFragment : Fragment() {
     }
 
     private fun initRecycler(){
-        binding.rvMovies.layoutManager = LinearLayoutManager(context)
-        adapter = MovieAdapter(movies)
-        binding.rvMovies.adapter = adapter
+        //binding.rvMovies.layoutManager = LinearLayoutManager(context)
+        //adapter = MovieAdapter(movies)
+        //binding.rvMovies.adapter = adapter
+        moviesColumView = binding.rvMoviesCompose
+        setMoviesToListView(movies)
+    }
 
+    private fun setMoviesToListView(moviesList : List<MovieModel>){
+        moviesColumView.setContent {
+            moviesList(moviesList)
+        }
     }
 
     override fun onCreateView(
@@ -56,7 +85,7 @@ class SearchFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (movies.any { movieModel -> movieModel.title.contains(query, ignoreCase = true) }) {
-                    binding.rvMovies.adapter = MovieAdapter(movies.filter { it.title.contains(query, ignoreCase = true) })
+                    setMoviesToListView(movies.filter { it.title.contains(query, ignoreCase = true) })
                 } else {
                     Toast.makeText(context, "No Match found", Toast.LENGTH_LONG).show()
                 }
@@ -65,7 +94,7 @@ class SearchFragment : Fragment() {
 
             override fun onQueryTextChange(query: String?): Boolean {
                 if (movies.any { movieModel -> movieModel.title.contains(query ?: "", ignoreCase = true) }) {
-                    binding.rvMovies.adapter = MovieAdapter(movies.filter { it.title.contains(query ?: "", ignoreCase = true) })
+                    setMoviesToListView(movies.filter { it.title.contains(query ?: "", ignoreCase = true) })
                 }
                 return true
             }
@@ -102,4 +131,43 @@ class SearchFragment : Fragment() {
             adapter.filterList(filteredlist)
         }
     }*/
+}
+
+@Composable
+private fun moviesList(movies: List<MovieModel>){
+    val listState = rememberLazyListState()
+    LazyColumn(state = listState,
+        modifier = Modifier
+            .background(color = Color(0xFFF5F5F5))
+            .fillMaxSize(1F)){
+        items(movies){ movie : MovieModel ->
+            movieItem(movie = movie)
+
+        }
+    }
+}
+
+@Composable
+private fun movieItem(movie: MovieModel){
+    Card() {
+        Row(modifier = Modifier.background(color = Color(0xFFF5F5F5))) {
+            Image(painter = rememberAsyncImagePainter(
+                model = movie.posterUrlPath),
+                contentDescription = "movie poster",
+                modifier = Modifier
+                    .size(height = 120.dp, width = 80.dp)
+                    .padding(top = 8.dp, bottom = 8.dp))
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp) ,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 8.dp)) {
+                Text(text = movie.title.toString())
+                Text(text = movie.releaseDate.toString(),
+                    textAlign = TextAlign.Center)
+                Text(text = movie.originalTitle)
+            }
+
+        }
+        Divider(modifier = Modifier.background(color = Color(0xFFE6E6E6)))
+    }
 }
