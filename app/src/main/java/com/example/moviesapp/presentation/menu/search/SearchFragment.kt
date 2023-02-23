@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.moviesapp.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material3.Card
@@ -36,6 +38,8 @@ import androidx.navigation.fragment.NavHostFragment
 import coil.compose.rememberAsyncImagePainter
 import com.example.moviesapp.databinding.FragmentSearchBinding
 import com.example.moviesapp.domain.model.MovieModel
+import com.example.moviesapp.presentation.theme.LightGrayCustom
+import com.example.moviesapp.presentation.theme.YellowDark
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,19 +65,19 @@ class SearchFragment : Fragment() {
 
 @Composable
 private fun Content( viewModel: SearchViewModel, binding: SearchFragment) {
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White), horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        SearchField(viewModel)
+        SearchField(viewModel, context)
         MoviesList(viewModel, binding)
     }
 }
 
-
 @Composable
-private fun SearchField(viewModel: SearchViewModel) {
+private fun SearchField(viewModel: SearchViewModel, context: Context) {
     val query by viewModel.query.observeAsState(initial = "")
     Box(
         modifier = Modifier
@@ -81,23 +85,27 @@ private fun SearchField(viewModel: SearchViewModel) {
             .background(Color.White)
     ) {
         TextField(
-            placeholder = { com.example.moviesapp.R.string.search.toString() },
+            placeholder = { (Text(text = context.getString(R.string.search))) },
             value = query,
             onValueChange = {
                 viewModel.onQueryChanged(it)
             },
             shape = RoundedCornerShape(10.dp),
             leadingIcon = {
-                Image(
-                    painter = painterResource(id = com.example.moviesapp.R.drawable.ic_search),
-                    contentDescription = "search"
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_search),
+                    contentDescription = "search",
+                    tint = Color.DarkGray
                 )
             },
             colors = TextFieldDefaults.textFieldColors(
-                focusedIndicatorColor = Color.Transparent,
+                focusedIndicatorColor = YellowDark,
                 disabledIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                backgroundColor = Color.LightGray,
+                backgroundColor = LightGrayCustom,
+                placeholderColor = Color.Black,
+                cursorColor = YellowDark,
+                disabledPlaceholderColor = Color.DarkGray
             )
         )
     }
@@ -122,7 +130,6 @@ private fun MoviesList(viewModel: SearchViewModel, binding: SearchFragment) {
 @Composable
 private fun MovieItem(movie : MovieModel, binding: SearchFragment) {
 
-    val mContext = LocalContext.current
     Card(modifier = Modifier.clickable {
         val action = SearchFragmentDirections.actionSearchFragmentToMovieFragment(movie)
         NavHostFragment.findNavController(binding).navigate(action)
