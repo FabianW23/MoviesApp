@@ -40,4 +40,5 @@
     <string name="default_web_client">1084680714992-j4fiikuc3vai0q3c2uc2b25np5504b86.apps.googleusercontent.com</string>
     <string name="user_is_already_registered">User is already registered</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="drama">Drama</string>
 </resources>
