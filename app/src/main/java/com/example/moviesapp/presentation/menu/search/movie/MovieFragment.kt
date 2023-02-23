@@ -30,7 +30,7 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.topAppBar.title = args.movie.title
         binding.tvMovieTitle.text = args.movie.title
-        binding.tvGenre.text = "Drama" //args.movie.genre
+        binding.tvGenre.text = R.string.drama.toString()
         binding.tvReleaseDate.text = args.movie.mediaType + " " + args.movie.releaseDate
         binding.tvSynopsis.text = args.movie.overview
         binding.tvMovieOriginalTitle.text = args.movie.originalTitle+ resources.getString(R.string.original_title)

@@ -27,13 +27,13 @@ class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
-        var view = binding.root
+        val view = binding.root
         setContentView(view)
     }
 
     override fun onResume() {
         super.onResume()
-        var navController = binding.navHostFragment.findNavController()
+        val navController = binding.navHostFragment.findNavController()
         binding.navView.setupWithNavController(navController)
         changeAccountTitleToUserName()
     }
@@ -42,7 +42,7 @@ class MenuActivity : AppCompatActivity() {
         sharedPref = this.getSharedPreferences(LOGGED_USER_PREFERENCES, Context.MODE_PRIVATE)!!
         val name = sharedPref.getString(NAME,null)
         if (name != null){
-            var menu = binding.navView.menu.getItem(3)
+            val menu = binding.navView.menu.getItem(3)
             menu.title = name.substringBefore(" ")
         }
     }

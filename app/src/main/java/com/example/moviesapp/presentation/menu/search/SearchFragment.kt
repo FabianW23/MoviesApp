@@ -61,9 +61,6 @@ class SearchFragment : Fragment() {
 
 @Composable
 private fun Content( viewModel: SearchViewModel, binding: SearchFragment) {
-
-
-
     Column(
         modifier = Modifier
             .fillMaxSize()
