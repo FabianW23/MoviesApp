@@ -12,6 +12,8 @@ import com.example.moviesapp.domain.usecase.movie.impl.GetTopRatedMoviesUseCaseI
 import com.example.moviesapp.domain.usecase.authentication.impl.RegisterUserUseCaseImpl
 import com.example.moviesapp.domain.usecase.authentication.impl.SelectUserByEmailUseCaseImpl
 import com.example.moviesapp.domain.usecase.authentication.impl.SelectUserUseCaseImpl
+import com.example.moviesapp.domain.usecase.contact.GetContactListUseCase
+import com.example.moviesapp.domain.usecase.contact.impl.GetContactListUseCaseImpl
 import com.example.moviesapp.domain.usecase.string.ClearStringsUseCase
 import com.example.moviesapp.domain.usecase.string.GetStringUseCase
 import com.example.moviesapp.domain.usecase.string.PutStringUseCase
@@ -82,4 +84,8 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     abstract fun bindClearStringsUseCase(clearStringsUseCaseImpl: ClearStringsUseCaseImpl):ClearStringsUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindGetContactUseCase(getContactListUseCaseImpl: GetContactListUseCaseImpl):GetContactListUseCase
 }
