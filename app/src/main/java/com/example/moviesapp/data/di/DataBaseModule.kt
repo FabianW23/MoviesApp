@@ -27,4 +27,6 @@ object DataBaseModule {
     @Singleton
     @Provides
     fun provideUserDao(database: MovieRoomDatabase) = database.userDao()
+
+
 }

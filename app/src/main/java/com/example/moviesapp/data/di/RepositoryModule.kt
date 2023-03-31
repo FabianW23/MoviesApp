@@ -1,13 +1,7 @@
 package com.example.moviesapp.data.di
 
-import com.example.moviesapp.data.repository.UserRepositoryImpl
-import com.example.moviesapp.data.repository.InteractionRepositoryImpl
-import com.example.moviesapp.data.repository.MovieRepositoryImpl
-import com.example.moviesapp.data.repository.StringRepositoryImpl
-import com.example.moviesapp.domain.repository.UserRepository
-import com.example.moviesapp.domain.repository.InteractionRepository
-import com.example.moviesapp.domain.repository.MovieRepository
-import com.example.moviesapp.domain.repository.StringRepository
+import com.example.moviesapp.data.repository.*
+import com.example.moviesapp.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,4 +27,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindStringRepository(stringRepositoryImpl: StringRepositoryImpl) : StringRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindContactRepository(contactRepositoryImpl: ContactRepositoryImpl) : ContactRepository
 }

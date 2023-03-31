@@ -1,11 +1,11 @@
 package com.example.moviesapp.data.di
 
-import android.content.Context
-import android.content.SharedPreferences
 import com.example.moviesapp.data.datasource.cache.CacheDataSource
 import com.example.moviesapp.data.datasource.cache.impl.CacheDataSourceImpl
 import com.example.moviesapp.data.datasource.database.DataBaseDataSource
 import com.example.moviesapp.data.datasource.database.DataBaseDataSourceImpl
+import com.example.moviesapp.data.datasource.device.ContactDataSource
+import com.example.moviesapp.data.datasource.device.ContactDataSourceImpl
 import com.example.moviesapp.data.datasource.remote.RemoteDataSource
 import com.example.moviesapp.data.datasource.remote.RemoteDataSourceImpl
 import com.example.moviesapp.data.datasource.sharedpreferences.SharedPreferencesDataSource
@@ -35,4 +35,8 @@ abstract class DataSourceModule {
     @Binds
     @Singleton
     abstract fun bindSharedPreferencesDataSource(sharedPreferencesDataSourceImpl: SharedPreferencesDataSourceImpl): SharedPreferencesDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindContactDataSource(contactDataSourceImpl: ContactDataSourceImpl): ContactDataSource
 }

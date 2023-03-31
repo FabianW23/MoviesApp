@@ -46,5 +46,17 @@
         <argument
             android:name="movie"
             app:argType="com.example.moviesapp.domain.model.MovieModel" />
+        <action
+            android:id="@+id/action_movieFragment_to_shareMovieFragment"
+            app:destination="@id/shareMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shareMovieFragment"
+        android:name="com.example.moviesapp.presentation.menu.search.share.ShareMovieFragment"
+        android:label="fragment_share_movie"
+        tools:layout="@layout/fragment_share_movie" >
+        <argument
+            android:name="movie"
+            app:argType="com.example.moviesapp.domain.model.MovieModel" />
     </fragment>
 </navigation>
