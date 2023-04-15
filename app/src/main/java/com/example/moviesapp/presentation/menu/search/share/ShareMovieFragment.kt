@@ -47,7 +47,7 @@ class ShareMovieFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         movie = args.movie
         viewModel.getContactList(this.requireContext())
@@ -107,26 +107,14 @@ private fun ContactItem(contact: ContactModel, activity: Activity, movie: MovieM
     Card(modifier = Modifier
         .padding(8.dp)
         .clickable {
-            /*val uri: Uri = Uri.parse("smsto:${contact.number}")
-            val whatsappIntent = Intent(Intent.ACTION_SEND)
-            whatsappIntent.type = "text/plain"
-            whatsappIntent.setPackage("com.whatsapp")
-            whatsappIntent.putExtra(Intent.EXTRA_TEXT, "Mira esta pelicula ${movie.title}")
-            try {
-                activity.startActivity(whatsappIntent)
-            } catch (ex: ActivityNotFoundException) {
-                println("Whatsapp have not been installed.")
-            }*/
             activity.startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(
-                        String.format(
-                            "https://api.whatsapp.com/send?phone=%s&text=%s",
-                            contact.number,
-                            "Mira esta pelicula ${movie.title}"
-                        )
-                    )
+                Intent.createChooser(
+                    Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, "Mira esta pelicula ${movie.title}")
+                        type = "text/plain"
+                    },
+                    null
                 )
             )
         }
