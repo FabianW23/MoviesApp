@@ -21,9 +21,25 @@ class ShareMovieViewModel @Inject constructor(
 
     val contactList : MutableLiveData<List<ContactModel>> = MutableLiveData()
 
+    private var matchedContactList = listOf<ContactModel>()
+    val query = MutableLiveData("")
+
     fun getContactList(context:Context){
         viewModelScope.launch(dispatcher) {
-            contactList.postValue(getContactListUseCase(context)!!)
+            matchedContactList = getContactListUseCase(context)!!
+            contactList.postValue(matchedContactList)
         }
+    }
+
+    fun onQueryChanged(query: String){
+        this.query.value = query
+        viewModelScope.launch(dispatcher){
+            if(query.isEmpty()){
+                contactList.postValue(matchedContactList)
+            }else{
+                contactList.postValue( matchedContactList.filter { it.name.contains(query, ignoreCase = true) } )
+            }
+        }
+
     }
 }

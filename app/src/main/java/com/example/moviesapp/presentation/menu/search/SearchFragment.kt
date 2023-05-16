@@ -94,7 +94,7 @@ private fun SearchField(viewModel: SearchViewModel, context: Context) {
             leadingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_search),
-                    contentDescription = "search",
+                    contentDescription = context.getString(R.string.search),
                     tint = Color.DarkGray
                 )
             },

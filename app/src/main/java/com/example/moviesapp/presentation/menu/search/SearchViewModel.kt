@@ -21,6 +21,7 @@ class SearchViewModel @Inject constructor(
             getMovies()
         }
     }
+
     private var matchedMovieList = listOf<MovieModel>()
     val query = MutableLiveData("")
 

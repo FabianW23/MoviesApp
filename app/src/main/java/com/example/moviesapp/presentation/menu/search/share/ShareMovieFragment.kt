@@ -2,6 +2,7 @@ package com.example.moviesapp.presentation.menu.search.share
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,22 +18,32 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.example.moviesapp.R
 import com.example.moviesapp.domain.model.ContactModel
 import com.example.moviesapp.databinding.FragmentShareMovieBinding
 import com.example.moviesapp.domain.model.MovieModel
+import com.example.moviesapp.presentation.menu.search.SearchViewModel
+import com.example.moviesapp.presentation.theme.LightGrayCustom
 import com.example.moviesapp.presentation.theme.YellowDark
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,7 +64,16 @@ class ShareMovieFragment : Fragment() {
         viewModel.getContactList(this.requireContext())
         binding = FragmentShareMovieBinding.inflate(inflater, container, false)
         binding.contactList.setContent {
-            this.activity?.let { MoviesList(viewModel, it, movie) }
+            this.activity?.let {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.White), horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    SearchField(viewModel, it)
+                    MoviesList(viewModel, it, movie)
+                }
+            }
         }
         return binding.root
     }
@@ -142,6 +162,42 @@ private fun ContactItem(contact: ContactModel, activity: Activity, movie: MovieM
                 )
             }
         }
+        Divider(modifier = Modifier.background(color = LightGrayCustom).padding(top = 8.dp))
+    }
+}
+
+@Composable
+private fun SearchField(viewModel: ShareMovieViewModel, context: Context) {
+    val query by viewModel.query.observeAsState(initial = "")
+    Box(
+        modifier = Modifier
+            .padding(top = 16.dp, bottom = 16.dp)
+            .background(Color.White)
+    ) {
+        TextField(
+            placeholder = { (Text(text = context.getString(R.string.search))) },
+            value = query,
+            onValueChange = {
+                viewModel.onQueryChanged(it)
+            },
+            shape = RoundedCornerShape(10.dp),
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_search),
+                    contentDescription = context.getString(R.string.search),
+                    tint = Color.DarkGray
+                )
+            },
+            colors = TextFieldDefaults.textFieldColors(
+                focusedIndicatorColor = YellowDark,
+                disabledIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                backgroundColor = LightGrayCustom,
+                placeholderColor = Color.Black,
+                cursorColor = YellowDark,
+                disabledPlaceholderColor = Color.DarkGray
+            )
+        )
     }
 }
 
